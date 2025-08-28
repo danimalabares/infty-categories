@@ -13,12 +13,62 @@
 
 \tableofcontents
 
+\begin{definition}
+\label{definition-discrete-fibration}
+\begin{reference}
+\url{https://ncatlab.org/nlab/show/discrete+fibration} 
+\end{reference}
+A functor $F:C \to B$ is a {\it discrete fibration} if for every object
+$c$ in $C$ and every morphism of the form $g: b \to F(c)$ in $B$ 
+there is a unique morphism $h:d \to c$ in $C$ 
+such that $F(h)=g$.
+\end{definition}
+
 \begin{exercise}
 \label{exercise-discrete-fibrations-over-category-are-presheaves}
 Prove that discrete fibrations over a category $C$ correspond to presheaves over
 $C$.
 \end{exercise}
 
+\begin{proof}
+First suppose that we are given a presheaf $X$ on $C$. Define a discrete
+fibration $F:C/X \to C$ by $(a,s)\mapsto a$ on objects and
+mapping a morphism $f:(a,s)\to (b,t)$ in $C/X$ to the
+corresponding morphism $a \to b$ in $C$.
+To show $F$ is a discrete fibration 
+let $g:b\to a$ be a morphism in $C$. 
+Consider $g^*=X(g):X_a\to X_b$,
+and the section $g^*s$ of $X_b$.
+Then the
+morphism $h:(b,g^*s)\to (a,s)$ is the only one mapping to $g$ under $h$.
+
+For the converse let $F:B \to C$ be a discrete fibration over $C$.
+To define a presheaf $X:C^{\text{op}}\to \text{Sets}$ let $c \in \Ob$.
+We want to assign the set of objects in $B$ mapped to $c$ under $F$,
+though it is not clear that this is a set…
+\end{proof}
+
+\begin{exercise}
+\label{exercise-simplicial-sets-category-has-internal-Hom}
+Show that the simplicial sets category  $\text{Set}_\Delta$ has internal 
+Hom $S^T$ for simplicial sets $S$ and $T$, given by
+$$
+(S^T)_n:=\Hom_{\text{Set}_\Delta}(T\times\Delta^n,S)
+$$
+\end{exercise}
+
+\begin{proof}
+We need to show, as in \cite[Notation 1.1.13]{Cisinsky},
+that $(S^T)_n$ is right adjoint to 
+the functor $- \times S$.
+That is,
+$$
+\Hom_{\text{Set}_\Delta}(U,S^T)\cong \Hom_\text{Set}_\Delta(U \times S,T)
+$$
+According to \cite[Theorem 1.1.3 and Remark 1.1.11]{Cisinsky},
+we find that $(S^T)_n=\Hom_{\text{Set}_\Delta}(h_n \times S,T)$
+where $h_n=\Hom(-,n)=\Delta_n$.
+\end{proof}
 
 \bibliography{my}
 \bibliographystyle{amsalpha}
