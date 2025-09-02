@@ -13,6 +13,9 @@
 
 \tableofcontents
 
+\section{Other exercises}
+\label{section-other-exercises}
+
 \begin{definition}
 \label{definition-discrete-fibration}
 \begin{reference}
@@ -44,11 +47,25 @@ morphism $h:(b,g^*s)\to (a,s)$ is the only one mapping to $g$ under $h$.
 
 For the converse let $F:B \to C$ be a discrete fibration over $C$.
 To define a presheaf $X:C^{\text{op}}\to \text{Sets}$ let $c \in \Ob$.
-We want to assign the set of objects in $B$ mapped to $c$ under $F$,
-though it is not clear that this is a set…
+We assign the set (for now I won't justify why this is a set)
+of objects in $B$ mapped to $c$ under $F$.
+To define the correspondence on morphisms, 
+consider a map $f:c \to d$ in $C^{\text{op}}$.
+In other words, we have a map in  $C$ of the form $f^{\text{op}}d \to c$.
+Then to any object in $b$ such that $F(b)=c$,
+by definition of discrete fibration,
+we have a unique morphism of $B$ of the form
+$h:r \to b$ such that $F(h)=f^{\text{op}}$.
+In particular this means that $F(r)=d$.
+This gives a function between $X(c)$ and $X(d)$.
 \end{proof}
 
-\begin{exercise}
+\section{Exercises of Rune, Chapter 1}
+\label{section-exercises-of-Rune-Chapter-1}
+
+Here's my progress so far on the exercises in \cite{Rune}, Chapter 1.
+
+\begin{exercise}[Observation 1.4.7]
 \label{exercise-simplicial-sets-category-has-internal-Hom}
 Show that the simplicial sets category  $\text{Set}_\Delta$ has internal 
 Hom $S^T$ for simplicial sets $S$ and $T$, given by
@@ -59,15 +76,92 @@ $$
 
 \begin{proof}
 We need to show, as in \cite[Notation 1.1.13]{Cisinsky},
-that $(S^T)_n$ is right adjoint to 
+that $S^T$ is right adjoint to 
 the functor $- \times S$.
 That is,
 $$
-\Hom_{\text{Set}_\Delta}(U,S^T)\cong \Hom_\text{Set}_\Delta(U \times S,T)
+\Hom_{\text{Set}_\Delta}(U,S^T)\cong \Hom_{\text{Set}_\Delta}(U \times S,T)
 $$
-According to \cite[Theorem 1.1.3 and Remark 1.1.11]{Cisinsky},
-we find that $(S^T)_n=\Hom_{\text{Set}_\Delta}(h_n \times S,T)$
-where $h_n=\Hom(-,n)=\Delta_n$.
+(I think) I understand the statement correctly
+but I don't understand how to apply
+\cite[Theorem 1.1.10 (Kan)]{Cisinsky} nor \cite[Remark 1.1.11]{Cisinsky}
+to prove it.
+\end{proof}
+
+\begin{exercise}[1.1]
+\label{exercise-relation-is-equivalence-relation}
+If $S$ is a Kan complex, then the relation defining
+$\pi_0S$ is an equivalence relation.
+\end{exercise}
+
+\begin{proof}
+I didn't understand well enough what is $\pi_0S$…
+\end{proof}
+
+Rather informally, I understand a category $C$ to be
+an {\it enriched category over $D$} if for any objects
+$c,d$ in $C$, $\Hom(c,d)$ is an object of $D$.
+Compositions of morphisms exist and are associative,
+and there is an identity morphism for every object $c$ in $C$.
+(See \url{https://ncatlab.org/nlab/show/enriched+category} 
+for a formal definition.)
+
+\begin{exercise}[1.2]
+\label{exercise-enriched-simplicial-set-categories-are-subcategory-of-Fun}
+Show that $\mathsf{Cat}_\Delta$ can be described as the full
+subcategory of $\text{Fun}(\Delta^{\text{op}},\mathsf{Cat})$
+containing the functors whose simplicial sets of objects
+are constant.
+\end{exercise}
+
+\begin{proof}
+To a $\text{Set}_\Delta$-enriched category $C$ 
+associate the functor which maps $[n]$ 
+to the category $C_n$ defined as follows.
+The objects of $C_n$ are the objects of $C$ for all $n$.
+For $a,b$ in $C$, the morphisms of $C_n$ 
+are $\Hom(a,b)_n$. To complete the definition of our
+functor in $\text{Fun}(\Delta^{\text{op}},\mathsf{Cat})$ 
+we must specify where to send a map $f:[n] \to [m]$ in $\Delta^{\text{op}}$.
+It must go to a functor of $C$ to $C$ that fixes
+all objects and maps a map in $\Hom(a,b)_n$ 
+to the induced map $\Hom(a,b)_m$ by the presheaf
+$\Hom(a,b)$.
+
+Now we need to show that every functor whose simplicial sets
+of objects is constant 
+(i.e. constant functor $\Delta^{\text{op}}\to\mathsf{Cat}$)
+can be expressed this way. Suppose $F$ is such a functor
+with value $C$. Associate the $\text{Set}_\Delta$-enriched
+category $C$ with $\Hom(a,b)_n$ given by
+$\Hom_{F([n])}(a,b)$.
+
+(Hopefully my understanding of the term ``full subcategory'' is
+not wrong?)
+\end{proof}
+
+\begin{exercise}[1.3]
+\label{exercise-N-is-fully-faithful}
+Show that $N:\mathsf{Cat}\to\mathsf{Set}_\Delta$ is fully faithful.
+\end{exercise}
+
+\begin{proof}
+We need to show that for any categories $A,B$,
+$\Hom(A,B)=\text{Fun}(A,B)$ is in ``bijection'' with
+$\Hom_{\mathsf{Set}_\Delta}(NA,NB)$.
+Recall that
+$NA$ is the presheaf that maps $[n]$ to
+the set of composible sequence of $n$ morphisms in $A$.
+Then to a functor $F:A \to B$ we associate the
+map that sends a sequence of $n$ morphisms in $A$ 
+to the respective sequence of $n$ morphisms in $B$ 
+after applying $F$ to each object and map.
+
+Conversely, given a morphism in $\mathsf{Set}_\Delta$
+from $NA$ to $NB$
+we can reconstruct a functor from $A$ to $B$
+ by interpreting objects of $A$ as $NA_0$ and 
+maps as $NA_1$.
 \end{proof}
 
 \bibliography{my}
