@@ -1,9 +1,13 @@
 #What is this
 
-This is a copy of the [Stacks Project repository](https://github.com/stacks/stacks-project).
-There are some files with math notes.
+(This is a copy of the [Stacks Project
+repository](https://github.com/stacks/stacks-project).)
+
+I will put here my coursework for infty-Categories course.
 
 #How to use
+Now I put a pdf of the files to make everything easier, but here's
+the instructions for local compilation anyway:
 
 Make a clone of repo in your computer so that you have all the files.
 Then you can edit and compile. The ``documentation`` directory contains
