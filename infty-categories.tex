@@ -84,13 +84,13 @@ X(c)\ni& b\ar@{|->}[r]_F&c=F(b)
 }
 $$
 on the other hand, $gf:c \to e$ gives by the
-same construction a unique map $k:q \to b$
+same construction a unique map $k:\hat{q}  \to b$
 such that $F(k)=f^{\text{op}}g^{\text{op}}$.
-While it's not clear whether $k$ equals $hj$ or not,
-the correspondence we are worried about is barely
-$X(c) \to X(e)$, $b \mapsto q$ which is satisfied
-in both constructions.
-
+To check that $\hat{q}=q$, observe that
+by functoriality of $F$, we have
+$F(hj)=F(h)F(j)=f^{\text{op}}g^{\text{op}}=F(k)$.
+By uniqueness of $k$, we conclude that
+$k=hj$ and thus $q=\hat{q}$.
 \end{proof}
 
 \section{Exercises of Rune, Chapter 1}
@@ -100,25 +100,29 @@ Here's my progress so far on the exercises in \cite{Rune}, Chapter 1.
 
 \begin{exercise}[Observation 1.4.7]
 \label{exercise-simplicial-sets-category-has-internal-Hom}
-Show that the simplicial sets category  $\text{Set}_\Delta$ has internal 
+Show that the simplicial sets category  $\mathsf{Set}_\Delta$ has internal 
 Hom $S^T$ for simplicial sets $S$ and $T$, given by
 $$
-(S^T)_n:=\Hom_{\text{Set}_\Delta}(T\times\Delta^n,S)
+(S^T)_n:=\Hom_{\mathsf{Set}_\Delta}(T\times\Delta^n,S)
 $$
 \end{exercise}
 
 \begin{proof}
-We need to show, as in \cite[Notation 1.1.13]{Cisinsky},
-that $S^T$ is right adjoint to 
-the functor $- \times S$.
+We need to show, that $S^T$ is the internal Hom in the category
+$\mathsf{Set}_\Delta$. Different notations for the internal Hom
+are $\text{Map}(-,-)$, $\underline{\Hom}(-,-)$.
+It must be is right adjoint to 
+the functor $U \times -$.
 That is,
 $$
-\Hom_{\text{Set}_\Delta}(U,S^T)\cong \Hom_{\text{Set}_\Delta}(U \times S,T)
+\Hom_{\text{Set}_\Delta}(U \times S,T)\cong\Hom_{\mathsf{Set}_\Delta}(U,S^T)
 $$
 (I think) I understand the statement correctly
 but I don't understand how to apply
 \cite[Theorem 1.1.10 (Kan)]{Cisinsky} nor \cite[Remark 1.1.11]{Cisinsky}
 to prove it.
+
+
 \end{proof}
 
 \begin{exercise}[1.1]
@@ -148,7 +152,7 @@ are constant.
 \end{exercise}
 
 \begin{proof}
-To a $\text{Set}_\Delta$-enriched category $C$ 
+To a $\mathsf{Set}_\Delta$-enriched category $C$ 
 associate the functor which maps $[n]$ 
 to the category $C_n$ defined as follows.
 The objects of $C_n$ are the objects of $C$ for all $n$.
@@ -165,7 +169,7 @@ Now we need to show that every functor whose simplicial sets
 of objects is constant 
 (i.e. constant functor $\Delta^{\text{op}}\to\mathsf{Cat}$)
 can be expressed this way. Suppose $F$ is such a functor
-with value $C$. Associate the $\text{Set}_\Delta$-enriched
+with value $C$. Associate the $\mathsf{Set}_\Delta$-enriched
 category $C$ with $\Hom(a,b)_n$ given by
 $\Hom_{F([n])}(a,b)$.
 
