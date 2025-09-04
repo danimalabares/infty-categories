@@ -46,18 +46,51 @@ Then the
 morphism $h:(b,g^*s)\to (a,s)$ is the only one mapping to $g$ under $h$.
 
 For the converse let $F:B \to C$ be a discrete fibration over $C$.
-To define a presheaf $X:C^{\text{op}}\to \text{Sets}$ let $c \in \Ob$.
+To define a presheaf $X:C^{\text{op}}\to \text{Sets}$ let $c \in \Ob C$.
 We assign the set (for now I won't justify why this is a set)
 of objects in $B$ mapped to $c$ under $F$.
 To define the correspondence on morphisms, 
 consider a map $f:c \to d$ in $C^{\text{op}}$.
-In other words, we have a map in  $C$ of the form $f^{\text{op}}d \to c$.
+In other words, we have a map in  $C$ of the form $f^{\text{op}}:d \to c$.
 Then to any object in $b$ such that $F(b)=c$,
 by definition of discrete fibration,
 we have a unique morphism of $B$ of the form
 $h:r \to b$ such that $F(h)=f^{\text{op}}$.
 In particular this means that $F(r)=d$.
-This gives a function between $X(c)$ and $X(d)$.
+This gives a function from $X(c)$ to $X(d)$.
+This situation is described in the following diagram:
+
+$$
+\xymatrix{
+X(d)\ni&r \ar@{.>}[d]_{\exists!h}\ar@{|->}[r]& d=F(r)
+\ar[d]^{f^{\text{op}}=F(h)}\\
+X(c)\ni& b\ar@{|->}[r]_F&c=F(b)
+}
+$$
+
+
+
+
+To check functoriality of $X$ defined in the previous paragraph
+suppose that $f:c\to d$ and $g:d\to e$ are two morphisms in $C^{\text{op}}$.
+Like before, we have maps $f^{\text{op}}:d\to c$ and $g^{\text{op}}:e \to d$.
+$$
+\xymatrix{
+X(e)\ni& q\ar@{.>}[d]_{\exists !j}\ar@{|->}[r]& e=F(q)
+\ar[d]^{g^{\text{op}}=F(j)}\\
+X(d)\ni&r \ar@{.>}[d]_{\exists!h}\ar@{|->}[r]& d=F(r)
+\ar[d]^{f^{\text{op}}=F(h)}\\
+X(c)\ni& b\ar@{|->}[r]_F&c=F(b)
+}
+$$
+on the other hand, $gf:c \to e$ gives by the
+same construction a unique map $k:q \to b$
+such that $F(k)=f^{\text{op}}g^{\text{op}}$.
+While it's not clear whether $k$ equals $hj$ or not,
+the correspondence we are worried about is barely
+$X(c) \to X(e)$, $b \mapsto q$ which is satisfied
+in both constructions.
+
 \end{proof}
 
 \section{Exercises of Rune, Chapter 1}
