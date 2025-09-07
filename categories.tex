@@ -656,13 +656,16 @@ $M_i \to \coprod M_i$. These are sometimes called the
 
 \begin{definition}
 \label{definition-simplex}
-A {\it simplex} is a non-empty finite ordered set
+The {\it simplex category} is the category of ordinals, i.e.
+non-empty finite ordered sets
 $$
 [n]=\{0<1<\ldots<n\}, \quad n=0,1,\ldots
 $$
-Simplexes form the category $\Delta$ along with order preserving
-maps of sets.
+with order preserving maps of sets.
 \end{definition}
+
+Objects of the simplicial category $\Delta$ are not called simplices.
+Instead, simplices are type of simplicial set:
 
 \begin{definition}
 \label{definition-simplicial-set}
@@ -670,6 +673,15 @@ A {\it simplicial set} is a presheaf on $\Delta$, i.e.
 an element of $\mathsf{Fun}(\Delta^{\text{op}},\text{Sets})$.
 \end{definition}
 
+\begin{definition}
+\label{definition-simplex}
+The {\it $n$-simplex} is the simplicial set $\Hom(-,[n]):=\Delta^n$.
+\end{definition}
+
+No time to delve into the details, but there's a way to identify simplicial sets
+to topological spaces. And then we can actually define two simplicial sets to be
+weakly equivalent if the corresponding topological spaces are weakly equivalent.
+Wow!
 
 
 
@@ -678,4 +690,3 @@ an element of $\mathsf{Fun}(\Delta^{\text{op}},\text{Sets})$.
 
 
 \end{document}
-
