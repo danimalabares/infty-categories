@@ -111,7 +111,7 @@ $$
 We need to show, that $S^T$ is the internal Hom in the category
 $\mathsf{Set}_\Delta$. Different notations for the internal Hom
 are $\text{Map}(-,-)$, $\underline{\Hom}(-,-)$.
-It must be is right adjoint to 
+It must be right adjoint to 
 the functor $U \times -$.
 That is,
 $$
@@ -132,7 +132,28 @@ $\pi_0S$ is an equivalence relation.
 \end{exercise}
 
 \begin{proof}
-I didn't understand well enough what is $\pi_0S$…
+\begin{enumerate}
+\item (Reflexivity.) Let $a \in S_0$. Consider the composition
+$$
+\xymatrixrowsep{0.5}
+\xymatrix{
+[0]\ar[r]^{d_0}& [1]\ar[r]^{f_0}& [0]\\
+0\ar@{|->}[r]& 1\ar@{|->}[r]&0
+}
+$$
+since this gives the identity we must have
+$$
+\xymatrixrowsep{0.5}
+\xymatrix{
+S_0\ar[r]^{S(f_0)}& S_1\ar[r]^{S(d_0)}& [0]\\
+a\ar@{|->}[r]& S(f_0)(a)\ar@{|->}[r]&a
+}
+$$
+but we can replace $d_0$ by $d_1$ and we'd still get the identity,
+so that $S(d_0)$ also maps $S(f_0)(a)$ to $a$. In other words, 
+for any  $a \in S_0$ the 1-simplex $S(f_0)(a)$ is the desired one.
+\item (Symmetry.) Let $a,b \in S_0$…
+\end{enumerate}
 \end{proof}
 
 Rather informally, I understand a category $C$ to be
