@@ -135,7 +135,7 @@ $\pi_0S$ is an equivalence relation.
 \begin{enumerate}
 \item (Reflexivity.) Let $a \in S_0$. Consider the composition
 $$
-\xymatrixrowsep{0.5}
+\xymatrixrowsep{0.5em}
 \xymatrix{
 [0]\ar[r]^{d_0}& [1]\ar[r]^{f_0}& [0]\\
 0\ar@{|->}[r]& 1\ar@{|->}[r]&0
@@ -143,14 +143,14 @@ $$
 $$
 since this gives the identity we must have
 $$
-\xymatrixrowsep{0.5}
+\xymatrixrowsep{0.5em}
 \xymatrix{
 S_0\ar[r]^{S(f_0)}& S_1\ar[r]^{S(d_0)}& [0]\\
 a\ar@{|->}[r]& S(f_0)(a)\ar@{|->}[r]&a
 }
 $$
 but we can replace $d_0$ by $d_1$ and we'd still get the identity,
-so that $S(d_0)$ also maps $S(f_0)(a)$ to $a$. In other words, 
+so that $S(d_1)$ also maps $S(f_0)(a)$ to $a$. In other words, 
 for any  $a \in S_0$ the 1-simplex $S(f_0)(a)$ is the desired one.
 \item (Symmetry.) Let $a,b \in S_0$…
 \end{enumerate}
@@ -172,30 +172,83 @@ containing the functors whose simplicial sets of objects
 are constant.
 \end{exercise}
 
+\begin{remark}
+\label{remark-induced-functor-on-objects}
+The phrase ``simplicial sets of objects are constants''
+means the following. Consider the functor
+$\mathsf{Cat} \to \mathsf{Set}$ that maps a category to its set
+of objects (I suppose we may take $\mathsf{Set}$ to be a universe),
+which induces for every functor in
+$\mathsf{Fun}(\Delta^{\text{op}},\mathsf{Cat})$ 
+a functor in $\mathsf{Fun}(\Delta^{\text{op}},\mathsf{Set})$.
+We mean to say the latter map is constant.
+\end{remark}
+
 \begin{proof}
+We need to construct a fully faithful functor
+$$
+F:\mathsf{Cat}_\Delta \to \mathsf{Fun}(\Delta^{\text{op}},\mathsf{Cat})
+$$
+whose image is the subcategory of functors 
+whose simplicial sets of objects are constant.
+
 To a $\mathsf{Set}_\Delta$-enriched category $C$ 
-associate the functor which maps $[n]$ 
-to the category $C_n$ defined as follows.
+associate the functor $F(C)$ which maps $[n]$ 
+to the category $C_n$, which is defined as follows.
 The objects of $C_n$ are the objects of $C$ for all $n$.
+(Notice that once we define the functor completely,
+this property will make it indeed a functor whose simplicial
+sets of objects are constant.) 
 For $a,b$ in $C$, the morphisms of $C_n$ 
-are $\Hom(a,b)_n$. To complete the definition of our
-functor in $\text{Fun}(\Delta^{\text{op}},\mathsf{Cat})$ 
-we must specify where to send a map $f:[n] \to [m]$ in $\Delta^{\text{op}}$.
-It must go to a functor of $C$ to $C$ that fixes
-all objects and maps a map in $\Hom(a,b)_n$ 
-to the induced map $\Hom(a,b)_m$ by the presheaf
+are $\Hom(a,b)_n$. To a map $f:[n] \to [m]$ in $\Delta^{\text{op}}$,
+define $F(C)$ to give the functor of $C_m$ to $C_n$ that fixes
+all objects and maps a map in $\Hom(a,b)_m$ 
+to the induced map $\Hom(a,b)_n$ by the presheaf
 $\Hom(a,b)$.
 
-Now we need to show that every functor whose simplicial sets
-of objects is constant 
-(i.e. constant functor $\Delta^{\text{op}}\to\mathsf{Cat}$)
-can be expressed this way. Suppose $F$ is such a functor
-with value $C$. Associate the $\mathsf{Set}_\Delta$-enriched
-category $C$ with $\Hom(a,b)_n$ given by
-$\Hom_{F([n])}(a,b)$.
+Now let's define how $F$ acts on morphisms. 
+(This definition is just what it should be, but let's go over it.)
+Choose two
+$\mathsf{Set}_\Delta$-enriched categories $C,D$ 
+and consider their corresponding functors $F(C),F(D)$.
+Fix a morphism $\varphi \in \Hom_{\mathsf{Cat}_\Delta}(C,D)$.
+Define a morphism (of presheaves of categories) 
+$F(\varphi):F(C) \to F(D)$
+defined as a collection of maps $F(C)_n \to F(D)_n$
+given on objects by $\varphi$ and on morphisms
+also given by $\varphi$, using that $\varphi$ is a morphism
+of $\mathsf{Cat}_\Delta$ to ensure naturality.
 
-(Hopefully my understanding of the term ``full subcategory'' is
-not wrong?)
+Functoriality of $F$ follows from functoriality of each $\varphi$ as in the
+previous paragraph.
+
+Now let's confirm that $F$ is faithful, that is, it induces injections
+on the Hom sets. Suppose $\varphi,\psi \in \Hom_{\mathsf{Cat}_\Delta}(C,D)$ 
+are such that $F(\varphi)=F(\psi)$. By definition of $F(\varphi)$ and
+ $F(\psi)$, it is immediate that $\varphi$ and $\psi$ coincide on objects.
+In fact, it is also immediate that they coincide on morphism and as
+simplicial sets by definition.
+
+To prove $F$ is fully faithful we only need to check surjectivity of
+the induced maps in Hom sets. Pick a morphism of presheaves
+of categories, denote it
+$F(\varphi)$, between two presheaves of categories $F(C)$ and  $F(D)$,
+both of whose simplicial sets of objects are constant, namely
+two sets $C$ and $D$.
+Then we can define two $\mathsf{Set}_\Delta$-enriched categories,
+which we also denote by $C$ and $D$,
+by defining their objects to be the sets $C$ and $D$, and their morphisms to be
+the collections of all the induced morphisms by $F(C)$ and $F(D)$ coming from
+morphisms of $\Delta^{\text{op}}$.
+Then it is immediate that the set $\Hom(C,D)$ is indeed a simplicial set.
+Thus $C,D \in \mathsf{Cat}_{\mathsf{Set}_\Delta}$. Further, we
+can define a morphism $\varphi \in \Hom_{\mathsf{Cat}_\Delta}(C,D)$ 
+which maps on objects as any of the induced maps by the morphism of presheaves
+of categories we started with (since both of the simplicial sets of objects
+of the corresponding categories are constant!)
+and on morphisms as well (any morphism of $C$ was defined as the
+induced map by $F(C)$ coming from a map of $\Delta^{\text{op}}$).
+It is clear that this morphism is mapped to $F(\varphi)$ under $F$.
 \end{proof}
 
 \begin{exercise}[1.3]
