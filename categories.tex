@@ -58,6 +58,117 @@ F(\phi) \circ F(\psi)$ for a composable pair $(\phi, \psi)$ of
 morphisms of $\mathcal{A}$ and $F(\text{id}_x) = \text{id}_{F(x)}$.
 \end{definition}
 
+\noindent
+Note that every category $\mathcal{A}$ has an
+{\it identity} functor $\text{id}_\mathcal{A}$.
+In addition, given a functor $G : \mathcal{B} \to \mathcal{C}$
+and a functor $F : \mathcal{A} \to \mathcal{B}$ there is
+a {\it composition} functor $G \circ F : \mathcal{A} \to \mathcal{C}$
+defined in an obvious manner.
+
+\begin{definition}
+\label{definition-faithful}
+Let $F : \mathcal{A} \to \mathcal{B}$ be a functor.
+\begin{enumerate}
+\item We say $F$ is {\it faithful} if
+for any objects $x, y \in \Ob(\mathcal{A})$ the map
+$$
+F : \Mor_\mathcal{A}(x, y) \to \Mor_\mathcal{B}(F(x), F(y))
+$$
+is injective.
+\item If these maps are all bijective then $F$ is called
+{\it fully faithful}.
+\item
+The functor $F$ is called {\it essentially surjective} if for any
+object $y \in \Ob(\mathcal{B})$ there exists an object
+$x \in \Ob(\mathcal{A})$ such that $F(x)$ is isomorphic to $y$ in
+$\mathcal{B}$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\label{definition-subcategory}
+A {\it subcategory} of a category $\mathcal{B}$ is a category $\mathcal{A}$
+whose objects and arrows form subsets of the objects and arrows of $\mathcal{B}$
+and such that source, target and composition in $\mathcal{A}$ agree with those
+of $\mathcal{B}$ and such that the identity morphism of an object of
+$\mathcal{A}$ matches the one in $\mathcal{B}$. We say $\mathcal{A}$ is a
+{\it full subcategory} of $\mathcal{B}$ if $\Mor_\mathcal{A}(x, y)
+= \Mor_\mathcal{B}(x, y)$ for all $x, y \in \Ob(\mathcal{A})$.
+We say $\mathcal{A}$ is a {\it strictly full} subcategory of $\mathcal{B}$
+if it is a full subcategory and given $x \in \Ob(\mathcal{A})$ any
+object of $\mathcal{B}$ which is isomorphic to $x$ is also in $\mathcal{A}$.
+\end{definition}
+
+\noindent
+If $\mathcal{A} \subset \mathcal{B}$ is a subcategory then the
+identity map is a functor from $\mathcal{A}$ to $\mathcal{B}$.
+Furthermore a subcategory $\mathcal{A} \subset \mathcal{B}$
+is full if and only if the inclusion functor is fully faithful.
+Note that given a category $\mathcal{B}$ the set of full subcategories
+of $\mathcal{B}$ is the same as the set of subsets of
+$\Ob(\mathcal{B})$.
+
+\begin{remark}
+\label{remark-functor-into-sets}
+Suppose that $\mathcal{A}$ is a category.
+A functor $F$ from $\mathcal{A}$ to $\textit{Sets}$
+is a mathematical object (i.e., it is a set not a class or a formula
+of set theory, see
+Sets, Section \ref{sets-section-sets-everything})
+even though the category of sets is ``big''.
+Namely, the range of $F$ on objects will be
+a set $F(\Ob(\mathcal{A}))$ and then we
+may think of $F$ as a functor between
+$\mathcal{A}$ and the full subcategory
+of the category of sets whose
+objects are elements of $F(\Ob(\mathcal{A}))$.
+\end{remark}
+
+\begin{example}
+\label{example-group-homomorphism-functor}
+A homomorphism $p : G\to H$ of groups gives rise to a functor
+between the associated groupoids in Example \ref{example-group-groupoid}. It is
+faithful (resp.\ fully faithful) if and only if $p$ is injective (resp.\ an
+isomorphism).
+\end{example}
+
+\begin{example}
+\label{example-category-over-X}
+Given a category $\mathcal{C}$ and an object $X\in \Ob(\mathcal{C})$
+we define the {\it category of objects over $X$},
+denoted $\mathcal{C}/X$ as follows.
+The objects of $\mathcal{C}/X$ are morphisms $Y\to X$ for
+some $Y\in \Ob(\mathcal{C})$. Morphisms between objects
+$Y\to X$ and $Y'\to X$ are morphisms $Y\to Y'$ in $\mathcal{C}$ that
+make the obvious diagram commute. Note that there is a functor
+$p_X : \mathcal{C}/X\to \mathcal{C}$ which simply forgets the
+morphism. Moreover given a morphism $f : X'\to X$ in
+$\mathcal{C}$ there is an induced functor
+$F : \mathcal{C}/X' \to \mathcal{C}/X$ obtained by composition with $f$,
+and $p_X\circ F = p_{X'}$.
+\end{example}
+
+\begin{example}
+\label{example-category-under-X}
+Given a category $\mathcal{C}$ and an object $X\in \Ob(\mathcal{C})$
+we define the {\it category of objects under $X$},
+denoted $X/\mathcal{C}$ as follows.
+The objects of $X/\mathcal{C}$ are morphisms $X\to Y$ for
+some $Y\in \Ob(\mathcal{C})$. Morphisms between objects
+$X\to Y$ and $X\to Y'$ are morphisms $Y\to Y'$ in $\mathcal{C}$ that
+make the obvious diagram commute. Note that there is a functor
+$p_X : X/\mathcal{C}\to \mathcal{C}$ which simply forgets the
+morphism. Moreover given a morphism $f : X'\to X$ in
+$\mathcal{C}$ there is an induced functor
+$F : X/\mathcal{C} \to X'/\mathcal{C}$
+obtained by composition with $f$,
+and $p_{X'}\circ F = p_X$.
+\end{example}
+
+
+
+
 \section{Monomorphisms}
 \label{section-monomorphisms-and-epimorphisms}
 
@@ -381,6 +492,13 @@ $$
 commute.
 \end{definition}
 
+\begin{remark}
+\label{remark-product-is-fibre-product}
+I think that a product is a fibre product
+when we put $y$ to be the terminal object!
+\end{remark}
+
+
 \noindent
 If a fibre product exists it is unique up to unique
 isomorphism. This follows from the Yoneda lemma as
@@ -557,6 +675,66 @@ endowed with a left $G$-action for some fixed group $G$.
 \item The category of $R$-modules given a ring $R$.
 \end{enumerate}
 
+\section{Pushouts}
+\label{section-pushouts}
+
+\noindent
+The dual notion to fibre products is that of pushouts.
+
+\begin{definition}
+\label{definition-pushouts}
+Let $x, y, z\in \Ob(\mathcal{C})$,
+$f\in \Mor_\mathcal{C}(y, x)$
+and $g\in \Mor_{\mathcal C}(y, z)$.
+A {\it pushout} of $f$ and $g$ is
+an object $x\amalg_y z\in \Ob(\mathcal{C})$
+together with morphisms
+$p\in \Mor_{\mathcal C}(x, x\amalg_y z)$ and
+$q\in\Mor_{\mathcal C}(z, x\amalg_y z)$ making the diagram
+$$
+\xymatrix{
+y \ar[r]_g \ar[d]_f & z \ar[d]^q \\
+x \ar[r]^p & x\amalg_y z
+}
+$$
+commute, and such that the following universal property holds:
+For any $w\in \Ob(\mathcal{C})$ and morphisms
+$\alpha \in \Mor_{\mathcal C}(x, w)$ and
+$\beta \in \Mor_\mathcal{C}(z, w)$ with
+$\alpha \circ f = \beta \circ g$ there is a unique
+$\gamma\in \Mor_{\mathcal C}(x\amalg_y z, w)$ making
+the diagram
+$$
+\xymatrix{
+y \ar[r]_g \ar[d]_f & z \ar[d]^q \ar[rrdd]^\beta & & \\
+x \ar[r]^p \ar[rrrd]^\alpha & x \amalg_y z \ar@{-->}[rrd]^\gamma & & \\
+& & & w
+}
+$$
+commute.
+\end{definition}
+
+\noindent
+It is possible and straightforward to prove the uniqueness of the triple
+$(x\amalg_y z, p, q)$ up to unique isomorphism (if it exists) by direct
+arguments. Another possibility is to think of the pushout as the
+fibre product in the opposite category, thereby getting this uniqueness for
+free from the discussion in Section \ref{section-fibre-products}.
+
+\begin{definition}
+\label{definition-cocartesian}
+We say a commutative diagram
+$$
+\xymatrix{
+y \ar[r] \ar[d] & z \ar[d] \\
+x \ar[r] & w
+}
+$$
+in a category is {\it cocartesian} if $w$ and the morphisms $x \to w$ and
+$z \to w$ form a pushout of the morphisms $y \to x$ and $y \to z$.
+\end{definition}
+
+
 
 
 \section{Limits and colimits}
@@ -683,7 +861,105 @@ to topological spaces. And then we can actually define two simplicial sets to be
 weakly equivalent if the corresponding topological spaces are weakly equivalent.
 Wow!
 
+\section{$\infty$-groupoids}
+\label{section-infty-groupoids}
 
+Apparently the philosophy is that
+we will not formally construct $\infty$-categories
+(nor $\infty$-groupoids) but
+barely start using them.
+So we admit ``facts'' such as
+``there are objects called {\it$\infty$-groupoids}''.
+We shall admit that although there are points (and paths),
+we cannot distinguish between points if there is
+a path joining two points. Thus we don't really have points
+but a set $\pi_0X$ of path components.
+
+There are also homotopies between
+paths, and homotopies between homotopies, and so on.
+
+Also, there are {\it maps} or {\it morphisms} between groupoids,
+homotopies between morphisms, homotopies between homotopies,
+and so on. In fact, all those things form an $\infty$-groupoid
+we denote by $\mathsf{Map}(X,Y)$.
+
+We can {\it compose} maps, and there is
+an {\it identity morphism} for every $\infty$-groupoid $X$.
+Composition is unital and associative in the only
+way that makes sense (?), which is up to homotopy.
+
+\begin{definition}
+\label{definition-equivalence}
+An {\it equivalence} of groupoids is a pair of maps
+that may be composed not be the identities,
+but homotopical to the identities.
+\end{definition}
+
+Dani: it looks like the main idea
+is to care about anything only up to homotopy.
+
+\medskip\noindent
+Sets are groupoids and for any set
+$$
+\Hom_{\mathsf{Set}}(\pi_0X,S)\xrightarrow{\simeq }\mathsf{Map}(X,S)
+$$
+is an equivalence.
+
+Then the 1-point set ends up being
+the terminal $\infty$-groupoid. The empty set
+is also an $\infty$-groupoid, and it is
+the initial one.
+
+\medskip\noindent
+Given morphisms $X \to Z$ and $Y \to Z$,
+there exists a pullback square
+$$
+\xymatrix{
+X\times_Z Y\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&X\ar[d]\\
+Y\ar[r]&Z
+}
+$$
+where ``square'' means not that it is commutative,
+but that there exists an homotopy between
+the compositions (commutative up to homotopy).
+Looks like it basically a fibre product
+(see Definition \ref{definition-fibre-product})
+up to homotopy.
+
+The {\it fibre} $f^{-1}(b)$ at $b$ of a map
+$f:E\to B$ is defined as the pullback
+$$
+\xymatrix{
+f^{-1}(b)\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&E\ar[d]\\
+\{b\}\ar[r]&B.
+}
+$$
+
+The {\it product} $X\times Y$ of two $\infty$-groupoids
+$X$ and  $Y$ is defined as the pullback
+$$
+\xymatrix{
+X\times Y\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&X\ar[d]\\
+Y\ar[r]& \ *.
+}
+$$
+
+\medskip\noindent
+Composition of squares is another square,
+and the composition of two pullback squares
+is another pullback square.
+
+\begin{definition}
+\label{definition-path-space}
+For points $x,y \in X$, the {\it path space} $X(x,y)$ 
+is the pullback
+$$
+\xymatrix{
+X(x,y)\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&\{x\}\ar[d]\\
+\{y\}\ar[r]&X.
+}
+$$
+\end{definition}
 
 \bibliography{my} \bibliographystyle{amsalpha}
 
