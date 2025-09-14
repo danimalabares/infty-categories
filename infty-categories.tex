@@ -135,8 +135,7 @@ $\pi_0S$ is an equivalence relation.
 \begin{enumerate}
 \item (Reflexivity.) Let $a \in S_0$. Consider the composition
 $$
-\xymatrixrowsep{0.5em}
-\xymatrix{
+\xymatrixrowsep{0.5em}\xymatrix{
 [0]\ar[r]^{d_0}& [1]\ar[r]^{f_0}& [0]\\
 0\ar@{|->}[r]& 1\ar@{|->}[r]&0
 }
@@ -274,6 +273,165 @@ we can reconstruct a functor from $A$ to $B$
  by interpreting objects of $A$ as $NA_0$ and 
 maps as $NA_1$.
 \end{proof}
+
+\section{Exercises of Rune, Chapter 2}
+\label{section-exercises-of-Rune-Chapter-2}
+
+\begin{definition}
+\label{definition-path-space}
+For points $x,y \in X$, the {\it path space} $X(x,y)$ 
+is the pullback
+$$
+\xymatrix{
+X(x,y)\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&\{x\}\ar[d]\\
+\{y\}\ar[r]&X.
+}
+$$
+\end{definition}
+
+\begin{exercise}[2.1]
+\label{exercise-2.1}
+Assuming that pushouts exist and have the expected
+universal property,
+show that $\Omega^n_xX \simeq \mathsf{Map}_*(S^n,X)$,
+where the $n$-th sphere is the pushout
+$$
+S^n:=* \amalg_{S^{n-1}}*,
+$$
+and the space of pointed maps is the pullback
+$$
+\xymatrix{
+\mathsf{Map}_*(S^n,X)\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}
+&\mathsf{Map}(S^n,X)\ar[d]\\
+\{x\}\ar[r]&\mathsf{Map}(*,X).
+}
+$$
+\end{exercise}
+
+
+\begin{proof}
+Since both
+$\Omega^1_xX$ and $\mathsf{Map}_*(S^1,X)$
+are pullbacks (and pullbacks
+are unique up to homotopy),
+it's enough to show that they are
+the pullback of the same diagram
+(up to homotopy).
+
+First notice that $\mathsf{Map}(*,X)\simeq X$ 
+in an obvious way:
+we identify a map $* \to X$ 
+with the image of $*$.
+To identify $\mathsf{Map}(S^n,X)$ 
+with $\{x\} \simeq \mathsf{Map}(*,X)$
+pick a map $* \to X$.
+Now consider the universal 
+property of pushouts:
+$$
+\xymatrix{
+S^{n-1} \ar[r] \ar[d] & \ * \ar[d] \ar[rrdd] & & \\
+\ * \ar[r] \ar[rrrd] & \ S^n=* \amalg_{S^{n-1}} \, * \ar@{-->}[rrd]^{\exists !}& & \\
+& & & X
+}
+$$
+\end{proof}
+
+\begin{exercise}[2.2]
+\label{exercise-2.2}
+Use the 5-lemma to show that given a commutative triangle
+$$
+\xymatrix{
+X \ar[rd]_{p} \ar[rr]_{f} && Y \ar[dl]^{q} \\
+& B
+}
+$$
+the morphism $f$ is an equivalence if and only if
+the induced maps on the fibres
+$p^{-1}(b)\to q^{-1}(b)$ are equivalences for all $b \in B$.
+\end{exercise}
+
+\begin{proof}
+For the converse implication,
+$$
+\xymatrixcolsep{.7em}
+\xymatrix{
+\cdots \ar[r]&\pi_{n+1}(B,b)\ar[r]\ar[d]^{\simeq}
+&\pi_n(p^{-1}(b),x)\ar[r]\ar[d]^{\simeq}
+&\pi_n(X,x)\ar[r]\ar@{.>}[d]^{\simeq }
+&\pi_n(B,b)\ar[r]\ar[d]^{\simeq}
+&\pi_{n-1}(p^{-1}(b),x)\ar[d]^{\simeq}\ar[r]&\cdots\\
+\cdots\ar[r]&\pi_{n+1}(B,b)\ar[r]&\pi_n(q^{-1}(b),f(x))\ar[r]&\pi_n(Y,f(x))\ar[r]&
+\pi_n(B,b)\ar[r]&\pi_{n-1}(q^{-1}(b),f(x))\ar[r]&\cdots
+}
+$$
+and for the forward implication just do the same with
+the map $\pi_n(p^{-1}(b),x)\to \pi_n(q^{-1},f(x))$ in the center.
+\end{proof}
+
+\begin{exercise}[2.3]
+\label{exercise-2.3}
+{\bf Note:} I think this problem
+is formulated wrong in the book
+(there's no $g$ in the diagram!),
+so I think this is the correct version:
+
+A commutative square
+$$
+\xymatrix{
+X'\ar[r]\ar[d]_{f'}&Y'\ar[d]^{f}\\
+X\ar[r]_{g}&Y
+}
+$$
+is a pullback if and only if for every $x \in X$,
+the induced map on fibres is an equivalence.
+\end{exercise}
+
+\begin{proof}
+The proof is using Corollary 2.1.23 that such a 
+square is a pullback if and only if
+for every $x \in X$ the induced map on fibres
+is an equivalence. This reduces everything
+to a situation completely analogous to 
+Exercise \ref{exercise-2.2} and
+we conclude by 5-lemma.
+\end{proof}
+
+\begin{exercise}[2.4]
+\label{exercise-2.4}
+Suppose we have a commutative diagram
+$$
+\xymatrix{
+X\ar[r]\ar[d]&X'\ar[d]\ar[r]& X''\ar[d]\\
+Y\ar[r]&Y'\ar[r]&Y''.
+}
+$$
+\begin{enumerate}
+\item If the right and composite squares are both pullbacks,
+then so is the left-hand square.
+\item If $\pi_0Y \to \pi_0Y'$ is surjective
+and the left and composite squares
+are both pullbacks,
+then so is the right-hand square.
+\end{enumerate}
+\end{exercise}
+
+\begin{proof}
+\begin{enumerate}
+\item To use the last exercise
+we only need to show that $Y\to Y''$ is an equivalence.
+But this is what Corollary 2.1.17: the 3-for-2 property.
+\item I'm not sure why is that condition on
+$\pi_0Y \to \pi_0Y'$… looks like the same argument should work.
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}[2.9]
+\label{exercise-2.9}
+Show that if $X$ is an $\infty$-groupoid,
+then so is $\mathsf{Fun}(\mathcal{C},X)$ 
+for any $\infty$-category $\mathcal{C}$.
+\end{exercise}
+
 
 \bibliography{my}
 \bibliographystyle{amsalpha}
