@@ -1347,8 +1347,13 @@ if it is right orthogonal to $s_0:[1]\to [0]$.
 The following are equivalent for a functor $F:\mathcal{C} \to \mathcal{D}$:
 \begin{enumerate}
 \item $F$ is conservative.
+\label{item-conservative1}
+
 \item The fibres of $F$ are all $\infty$-groupoids.
+\label{item-conservative2}
+
 \item The commutative square
+\label{item-conservative3}
 $$
 \xymatrix{
 \mathcal{C}^{\simeq}\ar[r]\ar[d]&\mathcal{C}\ar[d]\\
@@ -1360,35 +1365,49 @@ is a pullback.
 \end{exercise}
 
 \begin{proof}
-(1 $\iff$ 2.) To check using the pullback form
-is the same as checking that a thing
-is a pullback after we apply $(-)^\simeq$ 
-and $\mathsf{Map}([1],-)$.
+Maybe the easiest is to check that 
+\ref{item-conservative3} $\implies$ \ref{item-conservative2}.
+This is just because the square being a pullback
+means that the fibres are equivalent,
+and the fibres of the left vertical arrow are
+groupoids, while the fibres of the right vertical
+arrow are the fibres of $F$.
 
-We have the lifting problem
+In a similar way we can prove
+\ref{item-conservative1} $\iff$ \ref{item-conservative2}.
+Use that a map is an equivalence if and only if it is 
+an equivalence upon groupoidification and $\mathsf{Map}([1],-)$ 
+on the fibres of diagram in \ref{item-conservative3}.
+Applying groupoidification gives
+trivial equivalences in the fibres.
+Applying $\mathsf{Map}([1],-)$ and getting
+equivalences on the fibres is equivalent to
+the square
 $$
 \xymatrix{
-[1]\ar[r]\ar[d]&\mathcal{C}\ar[d]^{F}\\
-[0]\ar[r]\ar@{.>}[ur]&\mathcal{D}
+\mathcal{C}\simeq\mathsf{Map}([0],\mathcal{C})
+\ar[r]\ar[d]&
+\mathsf{Map}([1],\mathcal{C})\ar[d]\\
+\mathcal{D}\simeq \mathsf{Map}([0],\mathcal{D})\ar[r]&
+\mathsf{Map}([1],\mathcal{D})
 }
 $$
-to which we may apply $\mathsf{Map}(-,F^{-1}(d))$ to obtain
-$$
-\xymatrix{
-\mathsf{Map}([1],F^{-1}(d))&\mathsf{Map}(\mathcal{C},F^{-1}(d))\ar[l]\\
-\mathsf{Map}([0],F^{-1}(d)\ar[u]&\mathsf{Map}(\mathcal{D},F^{-1}(d))
-\ar[l]\ar[u]
-}
-$$
-And we know that $F^{-1}(b)$ 
-is a groupoid if and only if
-$$
-\mathsf{Map}([0],F^{-1}(d))\to \mathsf{Map}([1],F^{-1}(d))
-$$
-is an equivalence. In turn, this happens if and only if
-its fibers are contractible…
+being a pullback, which is the definition of conservative.
 
-($2 \implies 3$) We apply $\mathsf{Map}([0],-)$ to obtain
+if and only if the maps on fibres
+are equivalences. The fiber of the left vertical arrow
+is the groupoidification of the fiber of groupoidification of $F$,
+and the fiber of the right vertical arrow
+is the $\mathsf{Map}([1],-)$.
+
+Also, by applying $\mathsf{Map}([1],-)$ to
+the square on \ref{item-conservative3}
+we immediately obtain the $\mathsf{Map}$ condition
+for being conservative, i.e. condition \ref{item-conservative1}.
+
+Finally to check that
+\ref{item-conservative2} $\implies$ \ref{item-conservative3} 
+we apply $\mathsf{Map}([0],-)$ to obtain
 $$
 \xymatrix{
 \mathsf{Map}([0],\mathcal{C}^\simeq)\ar[r]\ar[d]
@@ -1401,7 +1420,7 @@ check that the maps induced in fibers are equivalences
 by  Lemma \ref{lemma-pullback-iff-fiber-maps-are-equivalences}.
 But since the fibres of $F$ are $\infty$-groupoids,
 they must equal the fiber of the map on the associated groupoids
-(this could be justified better, but I think that's the idea).
+(it's a fact! Fibre and groupoidification commute).
 We do the same for $[1]$ and use that $[0]$ and $[1]$ detect
 equivalences.
 \end{proof}
@@ -1527,8 +1546,21 @@ for conservativity.
 
 \begin{proposition}
 \label{proposition-arrow-functor-is-conservative}
-$\mathsf{Ar}(\mathcal{C})\to \mathcal{C} \times \mathcal{C}$.
+$\mathsf{Ar}(\mathcal{C})\to \mathcal{C} \times \mathcal{C}$
+is conservative.
 \end{proposition}
+
+\begin{definition}
+\label{definition-mapping-space}
+The {\it mapping space} is the fiber
+$$
+\xymatrix{
+\mathcal{C}(x,y)\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}
+&\mathsf{Ar}(\mathcal{C})\ar[d]\\
+\{(x,y)\}\ar[r]&\mathcal{C}\times\mathcal{C}
+}
+$$
+\end{definition}
 
 \section{Fully faithful functors}
 \label{section-fully-faithful-functors}
@@ -1541,17 +1573,18 @@ right orthogonal to $\partial[1] \to [1]$,
 that is, if the commutative square
 $$
 \xymatrix{
-\mathsf{Map}([x],\mathcal{C})\ar[r]\ar[d]&
+\mathsf{Map}([1],\mathcal{C})\ar[r]\ar[d]&
 \mathsf{Map}([1],\mathcal{D})\ar[d]\\
 (\mathcal{C}^\simeq)^{\times 2}\ar[r]&
 (\mathcal{D}^\simeq)^{\times 2}
 }
 $$
+is a pullback.
 \end{definition}
 
-By some exercise, since 
+By Exercise \ref{exercise-equivalences-for-conservative-functor}, since 
 $\mathsf{Ar}(\mathcal{C})\to \mathcal{C}\times\mathcal{C}$
-is conservative we know that the fibres
+is conservative, we get that the fibres
 are groupoids, so we know that we get equivalences
 on the fibres when we get a pullback, so really we have
 equivalences
