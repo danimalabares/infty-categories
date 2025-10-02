@@ -918,6 +918,8 @@ detect equivalences, we are done.
 $\mathsf{Map}([1],-)=\mathsf{Fun}([1],-)^\simeq$…
 \end{proof}
 
+\section{Segal spaces}
+\label{section-segal}
 
 
 \begin{remark}
@@ -1425,6 +1427,20 @@ We do the same for $[1]$ and use that $[0]$ and $[1]$ detect
 equivalences.
 \end{proof}
 
+Condition \ref{item-conservative3}
+can be interpreted as:
+if a map gives an equivalence in $\mathcal{D}$,
+then it already was an equivalence in $\mathcal{C}$.
+For that we use
+$$
+\xymatrix{
+\pi_0\mathcal{C}^\simeq\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&
+\pi_0\mathcal{D}^\simeq\ar[d]\\
+\pi_0\mathsf{Map}([1],\mathcal{C})\ar[r]&
+\pi_0\mathsf{Map}([1],\mathcal{D}).
+}
+$$
+
 Key tip: by Lemma (?) it is equivalent that
 a functor $F: \mathcal{C} \to \mathcal{D}$ is conservative and
 that the square [square with $\pi_0$] is a pullback.
@@ -1495,7 +1511,9 @@ $$
 }
 $$
 
-Why do all this? 
+Why do all this? A map that is right orthogonal
+to $[1]\to[0]$ is also right orthogonal
+to $s_0\times \text{id}:[1]\times[1]\to[1]$.
 
 \begin{proposition}
 \label{proposition-characterization-conservative}
@@ -1550,6 +1568,45 @@ $\mathsf{Ar}(\mathcal{C})\to \mathcal{C} \times \mathcal{C}$
 is conservative.
 \end{proposition}
 
+\begin{proof}
+We use Proposition \ref{proposition-characterization-conservative}
+putting $\mathcal{C}=\mathsf{Ar}(\mathcal{C})$ and
+$\mathcal{D}=\mathcal{C} \times \mathcal{C}$.
+That is, we know that 
+$\mathsf{Ar}(\mathcal{C}) \to \mathcal{C} \times \mathcal{C}$ 
+is conservative if and only if
+$$
+\xymatrix{
+\mathsf{Fun}([1],\mathcal{C})=\mathsf{Ar}(\mathcal{C})\ar[r]\ar[d]&
+\mathsf{Fun}([0]\amalg [0],\mathcal{C})=\mathcal{C}\times\mathcal{C}\ar[d]\\
+\mathsf{Fun}([1],\mathsf{Fun}([1],\mathcal{C}))
+=\mathsf{Fun}([1]\times[1],\mathcal{C}\ar[r]&
+\mathsf{Fun}[1],\mathcal{C} \times\mathcal{C})
+=\mathsf{Fun}([1]\amalg[1],\mathcal{C})
+}
+$$
+where we have used
+\begin{align*}
+\mathcal{C}\times\mathcal{C}&=\mathsf{Fun}([0]\amalg[0],\mathcal{C})\\
+\mathsf{Fun}([1],\mathcal{C}\times\mathcal{C})
+&=\mathsf{Fun}([1]\times([0]\amalg[0]),\mathcal{C})\\
+&=\mathsf{Fun}([1]\amalg[1],\mathcal{C})
+\end{align*}
+
+\noindent
+where the first equality is given
+just by applying $\mathsf{Fun}(-,\mathcal{C})$
+to the basic pushout diagram,
+the second one by currying,
+and third one by
+using that these are also $1$-categories.
+
+The point is that once
+we look at this the right way
+we realise that it is nothing but 
+the exercise diagram. So it's a pullback.
+\end{proof}
+
 \begin{definition}
 \label{definition-mapping-space}
 The {\it mapping space} is the fiber
@@ -1561,6 +1618,22 @@ $$
 }
 $$
 \end{definition}
+
+\begin{exercise}
+\label{exercise-compositions}
+Use the pushout decomposition of $[2]$ 
+to define composition maps
+$$
+\mathcal{C}(x,y)\times\mathcal{C}(y,z)\to\mathcal{C}(x,z).
+$$
+(For extra credit, use the decomposition
+of $[3]$ to show this is associative
+up to a specified homotopy.)
+\end{exercise}
+
+\begin{proof}
+[Missing]
+\end{proof}
 
 \section{Fully faithful functors}
 \label{section-fully-faithful-functors}
@@ -1614,20 +1687,20 @@ $$
 where $F$ and $G$ are fully faithful:
 \begin{enumerate}
 \item The square is a pullback of $\infty$-categories.
+\label{item-fully-faithful1}
+
 \item The square gives a pullback of $\infty$-groupoids on cores.
+\label{item-fully-faithful2}
+
 \item The square gives a pullback of sets on $\pi_0(-)^\simeq$.
+\label{item-fully-faithful3}
 \end{enumerate} 
 \end{exercise}
 
 \begin{proof}
-For $(1\implies 2)$ we use that
-``pullback is detected on maps from $[0]$ and $[1]$'',
-i.e. that the square is a pullback if and only if
-applying $\mathsf{Map}([0],-)$ and $\mathsf{Map}([1],-)$ 
-are pullbacks. The former is the required
-pullback on cores. {\bf No use of faithfulness.}
-
-
+\ref{item-fully-faithful1} $\implies$ \ref{item-fully-faithful2}
+is immediate since pullbacks are detected on maps from $[0]$ 
+(and $[1]$).
 \end{proof}
 
 \label{section-}
