@@ -1335,6 +1335,7 @@ In a more formal way we obtain a cube diagram
 upon application of $\mathsf{Map}$.
 \end{proof}
 
+
 \section{Conservative functors and mapping spaces}
 \label{section-conservative-functors-and-mapping-spaces}
 
@@ -1632,8 +1633,35 @@ up to a specified homotopy.)
 \end{exercise}
 
 \begin{proof}
-[Missing]
+$$
+\xymatrix{
+\text{fiber}\ar[d]\ar@{.>}[rr]^{\simeq}&&
+\mathcal{C}(x,y)\times \mathcal{C}(y,z)\\
+\mathsf{Fun}([2],\mathcal{C})\ar[r]^{\simeq}&
+\mathsf{Fun}([1]\amalg_{[0]}[1],\mathcal{C})\ar[r]^{\simeq}\ar[d]
+&\mathsf{Fun}([1],\mathcal{C})\times_{\mathsf{Fun}([0],\mathcal{C})}
+\mathsf{Fun}([1],\mathcal{C})\ar[ld]\\
+\mathcal{C}\times\mathcal{C}\times\mathcal{C}\ar[r]^{\simeq}&
+(\mathcal{C} \times \mathcal{C})
+\times_{\mathcal{C}}(\mathcal{C}\times\mathcal{C})
+}
+$$
+We shall define the fiber to be the
+composition $\mathcal{C}(x,y,z)$.
+This makes sense since
+the fiber on the rightmost part
+is indeed the product of the fibers, 
+as is displayed in the diagram.
+This is because in general
+$$
+\xymatrix{
+fib(F)\times fib(G)\ar[r]&  \mathcal{A}\times_Z \mathcal{B}
+\ar[r]^{F\times_{\text{id}}G}&
+\mathcal{C}\times_Z \mathcal{D}
+}
+$$
 \end{proof}
+
 
 \section{Fully faithful functors}
 \label{section-fully-faithful-functors}
@@ -1664,7 +1692,25 @@ equivalences
 $$
 \mathcal{C}(x,y)\xrightarrow{\simeq}\mathcal{D}(Fx,Fy)
 $$
+\begin{proposition}
+\label{proposition-fullt-faithfull-iff-pullback}
+$F:\mathcal{C} \to \mathcal{D}$ is fully faithful
+if and only if the commutative square
+$$
+\xymatrix{
+\mathsf{Ar}(\mathcal{C})\ar[r]\ar[d]&\mathsf{Ar}(\mathcal{D})\ar[d]\\
+\mathcal{C}\times\mathcal{C}\ar[r]&\mathcal{D}\times\mathcal{D}
+}
+$$
+\end{proposition}
 
+\begin{proof}
+At least one implication is easy:
+if it's a pullback,
+maps on fibres are equivalences.
+By the remark on the human-readble
+definition of fully faithfulness, we are done.
+\end{proof}
 
 \begin{lemma}
 \label{lemma-fully-faithfulness-is-preserved-by-Fun(A,-)}
@@ -1701,9 +1747,110 @@ where $F$ and $G$ are fully faithful:
 \ref{item-fully-faithful1} $\implies$ \ref{item-fully-faithful2}
 is immediate since pullbacks are detected on maps from $[0]$ 
 (and $[1]$).
+
+For \ref{item-fully-faithful2} $\implies$ \ref{item-fully-faithful1}
+first apply $\mathsf{Map}([1],-)$, then we get
+
+For \ref{item-fully-faithful2} $\implies$ \ref{item-fully-faithful3}
+we first need to make the diagram in the exercise
+after applying $(-)^{\simeq}$, then
+the arrows of $F$ and $G$ become monomorphisms.
+If we can prove that, then
+we apply some past exercise to see that
+the diagram is pullback iff the diagram on $\pi_0$.
+In fact, to prove those maps are monomorphisms
+we will use the theorem proved next,
+Theorem \ref{theorem-fully-faithful-implies-conservative}.
 \end{proof}
 
-\label{section-}
+\begin{theorem}
+\label{theorem-fully-faithful-implies-conservative}
+$F$ is fully faithfull if and only if
+$F$ is conservative.
+\end{theorem}
+
+\begin{proof}
+We want to prove that $F$ 
+is right orthogonal to $\partial[1]\to [1]$
+then it is right orthogonal to $[1]\to [0]$.
+First we apply some sort of 2-for-3
+property (some past exercise)
+we look at
+$$
+\xymatrix{
+\partial[1]=[0]\amalg[0]\ar[r]^{\substack{\text{left ort.} \\ \text{to $F$}}}
+& [1]\ar[r]^{\substack{\text{want to} \\ \text{prove r.o.}}}
+&[0]
+}
+$$
+we realise that it's enough
+to prove right-orthogonality of the
+composition of the two maps above.
+
+$$
+\xymatrix{
+[1]\amalg[1]\ar[r]\ar[d]\ar@{}[dr]|-{\ulcorner}&[3]\ar[d]\\
+[0]\amalg[0]\ar[r]&E\simeq *
+}
+$$
+where $E \simeq *$ by a fact.
+
+Consider
+$$
+K=\{0<1<2\}\amalg_{\{1<2\}}\{1<2<3\}
+$$
+which is nothing more than $[2]\amalg_{[1]}[2]$.
+Putting $[2]\simeq[1]\amalg_{[0]}[1]$ 
+we see that
+$$
+K\simeq[1]\amalg_{[0]}[1]\amalg_{[1]}[1]\amalg_{[0]}[1]
+\simeq[1]\amalg_{[0]}[1]\amalg_{[0]}[1]\simeq[3]
+$$
+Now we do
+$$
+\xymatrix{
+\{0<2\}\amalg\{1<3\}K\ar[r]^{\simeq}\ar[d]&[3]\ar[d]\\
+* \amalg *\ar[r]&E'\ar[r]&E
+}
+$$
+where we already saw the outer square is
+a pushouts by definition of $E$,
+and $E'$ is defined as the pushout of
+whatever it should be.
+Then, since $K \simeq [3]$,
+we apply the property of pushouts
+that if the map on the ``total spaces''
+is equivalence then so is the
+map on ``base spaces''
+(this is opposite to the property in pullback,
+which is just what we call
+``pullback of equivalences is equivalence'',
+and then apply $\mathsf{Fun}$ 
+to get to the property for pushouts).
+
+Now back to our objective,
+by the 2-for-3-ish for left-orthogonality,
+now we aim to prove that
+$$
+\xymatrix{
+\{1<2\}\ar[r]& K\ar[r]&E'\ar[r]&E.
+}
+$$
+Now let $H$ be the pushout
+$$
+\xymatrix{
+\{0<2\}\ar[r]\ar[d]\ar@{}[dr]|-{\ulcorner}&*\ar[d]\\
+[2]\ar[r]&H…
+}
+$$
+\end{proof}
+
+We get a corollary:
+
+\begin{lemma}
+\label{lemma-full-faithful-implies-underlying-groupoid-map-is-monomorphism}
+
+\end{lemma}
 
 
 \end{document}
