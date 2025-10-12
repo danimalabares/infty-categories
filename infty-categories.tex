@@ -13,8 +13,8 @@
 
 \tableofcontents
 
-\section{Other exercises}
-\label{section-other-exercises}
+\section{Discrete fibrations}
+\label{section-discrete-fibrations}
 
 \begin{definition}
 \label{definition-discrete-fibration}
@@ -92,10 +92,6 @@ $F(hj)=F(h)F(j)=f^{\text{op}}g^{\text{op}}=F(k)$.
 By uniqueness of $k$, we conclude that
 $k=hj$ and thus $q=\hat{q}$.
 \end{proof}
-
-\bibliography{my}
-\bibliographystyle{amsalpha}
-
 
 \section{Simplicial sets}
 \label{section-simplicial-sets}
@@ -549,7 +545,7 @@ an abelian group for $n>1$.
 Homotopy group detect equivalences:
 a map between groupoids is an equivalence
 if and only if all homotopy groups
-are isomortphic (as groups for $n>1$ or
+are isomorphic (as groups for $n>1$ or
 as sets for $n=0$).
 
 \begin{lemma}
@@ -704,13 +700,22 @@ under base change.
 \end{exercise}
 
 This means that in a pullback square,
-if the vertical (right?) arrow
+if the vertical arrow
 is a monomorphism, then so is the
 other vertical arrow.
 
 \begin{proof}
 
 \end{proof}
+
+\begin{remark}
+\label{remark-monomorphism-equivalence}
+Using Exercise \ref{exercise-2.2}, it follows that $f$ is a monomorphism
+if and only if for all $x,x' \in X$, the induced
+morphism on path spaces $X(x,x') \to Y(fx,fx')$ is
+an equivalence.
+\end{remark}
+
 
 \noindent
 The following lemma is very similar to
@@ -1636,8 +1641,8 @@ up to a specified homotopy.)
 $$
 \xymatrix{
 \text{fiber}\ar[d]\ar@{.>}[rr]^{\simeq}&&
-\mathcal{C}(x,y)\times \mathcal{C}(y,z)\\
-\mathsf{Fun}([2],\mathcal{C})\ar[r]^{\simeq}&
+\mathcal{C}(x,y)\times \mathcal{C}(y,z)\ar[d]\\
+\mathsf{Fun}([2],\mathcal{C})\ar[r]^{\simeq}\ar[d]&
 \mathsf{Fun}([1]\amalg_{[0]}[1],\mathcal{C})\ar[r]^{\simeq}\ar[d]
 &\mathsf{Fun}([1],\mathcal{C})\times_{\mathsf{Fun}([0],\mathcal{C})}
 \mathsf{Fun}([1],\mathcal{C})\ar[ld]\\
@@ -1786,7 +1791,6 @@ $$
 we realise that it's enough
 to prove right-orthogonality of the
 composition of the two maps above.
-
 $$
 \xymatrix{
 [1]\amalg[1]\ar[r]\ar[d]\ar@{}[dr]|-{\ulcorner}&[3]\ar[d]\\
@@ -1810,7 +1814,7 @@ Now we do
 $$
 \xymatrix{
 \{0<2\}\amalg\{1<3\}K\ar[r]^{\simeq}\ar[d]&[3]\ar[d]\\
-* \amalg *\ar[r]&E'\ar[r]&E
+\ast \amalg \ast\ar[r]&E' \ar[r]&E
 }
 $$
 where we already saw the outer square is
@@ -1839,19 +1843,54 @@ $$
 Now let $H$ be the pushout
 $$
 \xymatrix{
-\{0<2\}\ar[r]\ar[d]\ar@{}[dr]|-{\ulcorner}&*\ar[d]\\
-[2]\ar[r]&H…
+\{0<2\} \ar[r]\ar[d]\ar@{}[dr]|-{\ulcorner}& \ast \ar[d]\\
+[2] \ar[r]& H…
 }
 $$
 \end{proof}
 
-We get a corollary:
+Recall from Remark \ref{remark-monomorphism-equiavlence}
+that a map of $\infty$-groupoids $f:X \to Y$
+is a monomorphism if and only if 
+the induced map on mapping spaces
+$X(x,x') \to Y(fx,fx')$ is an equivalence.
+Which is strange: that's what we wanted for
+{\it fully faithful} functors, not monomorphisms.
+(But then again: that was before we defined
+$\infty$-categories.)
 
 \begin{lemma}
 \label{lemma-full-faithful-implies-underlying-groupoid-map-is-monomorphism}
-
+If $F: \mathcal{C} \to \mathcal{D}$ is fully faithful,
+then its underlying morphism of $\infty$-groupoids is a monomorphism
+of spaces.
 \end{lemma}
 
+\begin{remark}
+\label{remark-equivalence-on-cores-implies-fully-faithful-iff}
+Suppose $F:\mathcal{C} \to \mathcal{D}$ gives an equivalence
+on cores. Then $F$ is fully faithful
+if and only if $\mathsf{Map}([1],\mathcal{C}) \to \mathsf{Map}([1],\mathcal{D})$ 
+is an equivalence. Indeed: by definition of full faithfullness
+we get equivalences on all mapping spaces 
+$\mathcal{C}(x,x') \simeq \mathcal{D}(fx,fx')$.
+Applying $(-)^\simeq$ we obtain a similar diagram on groupoids,
+namely
+$$
+\xymatrix{
+\mathsf{Map}([1],\mathcal{C})\ar[r]\ar[d]&
+\mathsf{Map}([1],\mathcal{D})\ar[d]\\
+\mathcal{C}^\simeq \times \mathcal{C}^\simeq\ar[r]&
+\mathcal{D}^\simeq\times \mathcal{D}^\simeq.
+}
+$$
+The lower arrow is an equivalence by hypothesis
+and by Exercise \ref{exercise-2.3} so is the upper arrow.
+\end{remark}
+
+
+\bibliography{my}
+\bibliographystyle{amsalpha}
 
 \end{document}
 
