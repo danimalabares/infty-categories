@@ -689,7 +689,10 @@ $\pi_0Y \to \pi_0Y'$… looks like the same argument should work.
 \noindent
 ``A monomorphism of groupoids is the inclusion of
 some of the path components''. That is, all information
-about a monomorphism is in $\pi_0$.
+about a monomorphism is in $\pi_0$. Namely:
+monomorphism if and only if injective on  $\pi_0$ 
+and isomorphism in higher homotopy groups
+(after fixing a base point).
 
 Monomorphisms of $\infty$-groupoids are…
 
@@ -703,10 +706,6 @@ This means that in a pullback square,
 if the vertical arrow
 is a monomorphism, then so is the
 other vertical arrow.
-
-\begin{proof}
-
-\end{proof}
 
 \begin{remark}
 \label{remark-monomorphism-equivalence}
@@ -1866,10 +1865,25 @@ then its underlying morphism of $\infty$-groupoids is a monomorphism
 of spaces.
 \end{lemma}
 
+\begin{proof}
+Fully faithful says $\partial[1] \to [1]$ is 
+left orthogonal to $F$. But by Theorem \ref{?}
+we also know it is conservative, so it's right orthogonal
+to $[1] \to [0]$. By 2-for-3, $\partial[1] \to [1] \to [0]$ 
+is left orthogonal to $F$. But we know that this is equivalent
+to being an equivalence on underlying groupoids
+\end{proof}
+
+\begin{definition}
+\label{definition-essentially-surjective}
+$F:\mathcal{C} \to \mathcal{D}$ is {\it essentially surjective} if
+$\pi_0F: \pi_0\mathcal{C}^\simeq \to \pi_0\mathcal{D}^\simeq$ is surjective.
+\end{definition}
+
 \begin{remark}
-\label{remark-equivalence-on-cores-implies-fully-faithful-iff}
+\label{remark-equivalence-on-cores-implies-fully-faithful-equivalence}
 Suppose $F:\mathcal{C} \to \mathcal{D}$ gives an equivalence
-on cores. Then $F$ is fully faithful
+on cores. Let's show that $F$ is fully faithful
 if and only if $\mathsf{Map}([1],\mathcal{C}) \to \mathsf{Map}([1],\mathcal{D})$ 
 is an equivalence. Indeed: by definition of full faithfullness
 we get equivalences on all mapping spaces 
@@ -1886,7 +1900,142 @@ $$
 $$
 The lower arrow is an equivalence by hypothesis
 and by Exercise \ref{exercise-2.3} so is the upper arrow.
+
+In conclusion, provided $F$ is an equivalence on the cores,
+it is an equivalence of $\infty$-categories if and only if it
+is fully faithful. 
 \end{remark}
+
+\begin{lemma}
+\label{lemma-equivalence-iff-fully-faithful-and-essentially-surjective}
+A functor of $\infty$-categories is an equivalence
+if and only if it is fully faithful and essentially surjective.
+\end{lemma}
+
+\begin{proof}
+Apply Lemma 
+\ref{lemma-full-faithful-implies-underlying-groupoid-map-is-monomorphism}
+and then Remark
+\ref{remark-equivalence-on-cores-implies-fully-faithful-equivalence}.
+\end{proof}
+
+\section{Full subcategories}
+\label{section-full-subcactegories}
+
+\noindent
+The following construction (fact) allows to construct an
+$\infty$-category from an $\infty$-groupoid $X$ and
+a map $X \to \mathcal{C}^\simeq$. In fact,
+this is the construction of a full subcategory
+from a subgroupoid of the underlying groupoid.
+
+Given an $\infty$-category $\mathcal{C}$
+and a monomorphism $i:X \to \mathcal{C}^\simeq$ of $\infty$-groupoids,
+then there exist an $\infty$-category $i^*\mathcal{C}$
+and a functor of $\infty$-categories
+$\overline{i}:i^*\mathcal{C} \to \mathcal{C}$ 
+such that $(\overline{i})^\simeq \simeq i$
+(and $(i^*\mathcal{C})\simeq \simeq X$ should also hold)
+and such that the following diagram
+$$
+\xymatrix{
+\mathsf{Map}(\mathcal{D},i^*\mathcal{C})\ar[r]\ar[d]&
+\mathsf{Map}(\mathcal{D},\mathcal{C})\ar[d]\\
+\mathsf{Map}(\mathcal{D}^\simeq,X)\ar[r]&
+\mathsf{Map}(\mathcal{D}^\simeq,\mathcal{D}^\simeq).
+}
+$$
+is a pullback.
+
+Note that putting $\mathcal{D}=[1]$ 
+(which implies that $\mathcal{D}^\simeq=\partial[1]$),
+meaning that $\overline{i}$ is fully faithful.
+
+In the other direction, it's also true that any fully faithful
+functor is of that form:
+
+\begin{lemma}
+\label{lemma-fully-faithful-subcategories}
+If $j:\mathcal{D} \to \mathcal{C}$ is fully faithful
+then $j \simeq \overline{j^\simeq}$.
+\end{lemma}
+
+\begin{proof}
+As in the proof of Lemma
+\ref{lemma-equivalence-iff-fully-faithful-and-essentially-surjective}
+we know that fully faithful gives monomorphism of underlying groupoids.
+Now, using the diagram in the construction above we can factor
+$$
+\xymatrix{
+\mathcal{D}\ar[r]^f\ar@/^{pc}/[rr]_j
+&(j^\simeq)^*\mathcal{C} \ar[r]^{\overline{i}}
+&\mathcal{C}
+}
+$$
+…
+\end{proof}
+
+\begin{lemma}
+\label{lemma-essentially-surjective-orthogonal}
+Essentially surjective functors are left orthogonal to fully faithful ones.
+\end{lemma}
+
+\medskip\noindent
+We are almost done constructing a factorization system!
+Conside the functor  $F:\mathcal{C} to \mathcal{D}$ such that
+$F:\mathcal{C}^\simeq X \hookrightarrow \mathcal{D}^\simeq.$
+This gives
+
+\section{Equivalences in an infinity-category}
+\label{section-equivalences}
+
+For any $\infty$-category we always have
+$\mathcal{C} \to \mathsf{Ar}(\mathcal{C})$ induced
+from $[1] \to [0]$ by $\mathsf{Fun}(-,\mathcal{C})$.
+This is a fully faithful functor (picture).
+
+Then we apply that
+$$
+\xymatrix{
+\mathcal{C}\xrightarrow{\substack{\text{essentially} \\ \text{surjective}}}
+i^*\mathcal{D}\ar[r]^{\text{fully faithful}}.
+}
+$$
+for the case
+$$
+C\xrightarrow{\simeq}\mathsf{Ar}_{\text{eq}}(\mathcal{C})
+\hookrightarrow \mathsf{Ar}(\mathcal{C}).
+$$
+Then we get 
+$$
+[\text{triangle diagram}].
+$$
+
+\begin{lemma}
+\label{lemma-equivalence-equivalences}
+Suppose $f: x \to y$ is a morphism in an $\infty$-category.
+Then the following are equivalent:
+\begin{enumerate}
+\item $f$ is an equivalence.
+\label{item-equiv1}
+\item
+\label{item-equiv2}
+For all $c \in \mathcal{C}$, the morphism
+$f_*\mathcal{C}(c,x) \to \mathcal{C}(c,y)$ is
+an equivalence of $\infty$-groupoids.
+\item 
+\label{item-equive3}
+For all $c \in \mathcal{C}$, the morphism
+$f^*\mathcal{C}(y,c)\to \mathcal{C}(x,c)$ 
+is an equivalence of $\infty$-groupoids.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+2 $\implies$ 1. Put $c=x$ and then $c=y$. We obtain that
+$\mathcal{C}(x,x) \simeq \mathcal{C}(x,y)$
+and $\mathcal{C}(y,x) \simeq \mathcal{C}(y,y)$.
+\end{proof}
 
 
 \bibliography{my}
