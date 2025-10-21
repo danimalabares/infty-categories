@@ -549,7 +549,7 @@ are isomorphic (as groups for $n>1$ or
 as sets for $n=0$).
 
 \begin{lemma}
-\label{lemma-equivalences-satisfy-2-for-3}
+\label{lemma-equivalences-satisfy-3-for-2}
 Equivalences of $\infty$-groupoids
 satisfy the 3-for-2 property:
 if  $f$ and $g$ are composable and two
@@ -627,9 +627,15 @@ $$
 &\pi_n(p^{-1}(b),x)\ar[r]\ar[d]^{\simeq}
 &\pi_n(X,x)\ar[r]\ar@{.>}[d]^{\simeq }
 &\pi_n(B,b)\ar[r]\ar[d]^{\simeq}
-&\pi_{n-1}(p^{-1}(b),x)\ar[d]^{\simeq}\ar[r]&\cdots\\
-\cdots\ar[r]&\pi_{n+1}(B,b)\ar[r]&\pi_n(q^{-1}(b),f(x))\ar[r]&\pi_n(Y,f(x))\ar[r]&
-\pi_n(B,b)\ar[r]&\pi_{n-1}(q^{-1}(b),f(x))\ar[r]&\cdots
+&\pi_{n-1}(p^{-1}(b),x)\ar[d]^{\simeq}\ar[r]
+&\cdots\\
+\cdots\ar[r]
+&\pi_{n+1}(B,b)\ar[r]
+&\pi_n(q^{-1}(b),f(x))\ar[r]
+&\pi_n(Y,f(x))\ar[r]
+&\pi_n(B,b)\ar[r]
+&\pi_{n-1}(q^{-1}(b),f(x))\ar[r]
+&\cdots
 }
 $$
 and for the forward implication just do the same with
@@ -637,7 +643,7 @@ the map $\pi_n(p^{-1}(b),x)\to \pi_n(q^{-1},f(x))$ in the center.
 \end{proof}
 
 \begin{lemma}
-\label{lemma-pullback-iff-fiber-maps-are-equivalences}
+\label{lemma-pullback-iff-fiber-maps-are-equivalences-groupoids}
 A commutative square
 $$
 \xymatrix{
@@ -648,6 +654,33 @@ $$
 is a pullback if and only if for every $x \in X$,
 the induced map on fibres is an equivalence.
 \end{lemma}
+
+\begin{proof}
+We need to check that $X' \simeq Y'\times_Y X$.
+I think we use the universal property of pullbacks
+to get a map $X' \to Y'\times_YX$.
+To check this is an equivalence we use 
+Exercise \ref{exercise-2.2} as in
+$$
+\xymatrix{
+X' \ar[rd]_{f'} \ar[rr] && Y'\times_YX \ar[dl]^p \\
+& X.
+}
+$$
+We see that the map on fibers is non other
+than $f'^{-1}(x) \to f^{-1}(g(x))$… but why?
+This ammounts to showing that  $p^{-1}(x)\simeq f^{-1}(g(x))$.
+$$
+\xymatrix{
+f^{-1}(x)\ar[d]\ar@{-->}[rr]
+& & p^{-1}(x)\ar[dd]\ar[r]^{\simeq?}
+&f^{-1}(g(x))\ar[dd]\\
+X' \ar[rrrd] \ar[rrd] \ar[rrdd]_{f'} & & \\
+& & X \times_YY' \ar[d]_p \ar[r] & Y' \ar[d]^f \\
+& & X \ar[r]_g & Y
+}
+$$
+\end{proof}
 
 \begin{exercise}[2.3]
 \label{exercise-2.3}
@@ -687,10 +720,20 @@ $\pi_0Y \to \pi_0Y'$… looks like the same argument should work.
 \label{section-monomorphisms}
 
 \noindent
-``A monomorphism of groupoids is the inclusion of
-some of the path components''. That is, all information
-about a monomorphism is in $\pi_0$. Namely:
-monomorphism if and only if injective on  $\pi_0$ 
+Monomorphisms can be easily recalled
+as the maps whose fibers are either empty or contractible,
+and, equivalently, as the maps that are
+injective on $\pi_0$ and the square
+$$
+\xymatrix{
+X\ar[r]\ar[d]&Y\ar[d]\\
+\pi_0X\ar[r]&\pi_0Y
+}
+$$
+is a pullback.
+
+In class I picked up that a map is
+monomorphism if and only if it's injective on  $\pi_0$ 
 and isomorphism in higher homotopy groups
 (after fixing a base point).
 
@@ -715,7 +758,6 @@ morphism on path spaces $X(x,x') \to Y(fx,fx')$ is
 an equivalence.
 \end{remark}
 
-
 \noindent
 The following lemma is very similar to
 Proposition \ref{proposition-map-is-equivalence-iff-fibers-contractible}.
@@ -731,7 +773,7 @@ either empty of contractible.
 \end{lemma}
 
 \begin{proof}
-Using Lemma \ref{lemma-pullback-iff-fiber-maps-are-equivalences},
+Using Lemma \ref{lemma-pullback-iff-fiber-maps-are-equivalences-groupoids},
 which says a map is a pullback iff induced maps on fibers are equivalences.
 \end{proof}
 
@@ -742,7 +784,7 @@ that the vertical map on the left in the following
 diagram is ``diagonal map''
 $$
 \xymatrix{
-\bullet\ar[r]\ar[d]&X\ar[d]&Y\ar[d]\\
+\bullet\ar[r]\ar[d]&X\ar[d]\ar[r]&Y\ar[d]\\
 \bullet\ar[r]&X \times X\ar[r]Y \times Y&
 }
 $$
@@ -1138,7 +1180,7 @@ orthogonal to $r$ if and only if $g \circ f$ is.
 \end{lemma}
 
 \begin{proof}
-By 2-for-3 for pullbacks, i.e. Exercise \ref{exercise-2.4}.
+By 3-for-2 for pullbacks, i.e. Exercise \ref{exercise-2.4}.
 \end{proof}
 
 It is important to remember that
@@ -1147,7 +1189,7 @@ as square with $\pi_0$ is pullback.
 That is the key to Lemma 2.4.3.
 For one implication we need
 to put surjectivity on $\pi_0$
-to apply 2-for-3.
+to apply 3-for-2.
 
 Look at the case for sets,
 it's also true that epimorphisms
@@ -1343,6 +1385,12 @@ upon application of $\mathsf{Map}$.
 \section{Conservative functors and mapping spaces}
 \label{section-conservative-functors-and-mapping-spaces}
 
+\noindent
+The fibers of conservative functors are groupoids.
+Fibrations are conservative (Exercise \ref{exercise-3.1})
+and so are fully faithful functors (Theorem
+\ref{theorem-fully-faithful-implies-conservative})
+
 \begin{definition}
 \label{definition-conservative-functor}
 A functor $\mathcal{C} \to \mathcal{D}$ is {\it conservative} 
@@ -1424,7 +1472,7 @@ $$
 $$
 To check this is a pullback we only need to
 check that the maps induced in fibers are equivalences
-by  Lemma \ref{lemma-pullback-iff-fiber-maps-are-equivalences}.
+by  Lemma \ref{lemma-pullback-iff-fiber-maps-are-equivalences-groupoids}.
 But since the fibres of $F$ are $\infty$-groupoids,
 they must equal the fiber of the map on the associated groupoids
 (it's a fact! Fibre and groupoidification commute).
@@ -1697,7 +1745,7 @@ $$
 \mathcal{C}(x,y)\xrightarrow{\simeq}\mathcal{D}(Fx,Fy)
 $$
 \begin{proposition}
-\label{proposition-fullt-faithfull-iff-pullback}
+\label{proposition-fully-faithfull-iff-pullback}
 $F:\mathcal{C} \to \mathcal{D}$ is fully faithful
 if and only if the commutative square
 $$
@@ -1777,7 +1825,7 @@ $F$ is conservative.
 We want to prove that $F$ 
 is right orthogonal to $\partial[1]\to [1]$
 then it is right orthogonal to $[1]\to [0]$.
-First we apply some sort of 2-for-3
+First we apply some sort of 3-for-2
 property (some past exercise)
 we look at
 $$
@@ -1793,7 +1841,7 @@ composition of the two maps above.
 $$
 \xymatrix{
 [1]\amalg[1]\ar[r]\ar[d]\ar@{}[dr]|-{\ulcorner}&[3]\ar[d]\\
-[0]\amalg[0]\ar[r]&E\simeq *
+[0]\amalg[0]\ar[r]&E\simeq \ast
 }
 $$
 where $E \simeq *$ by a fact.
@@ -1832,7 +1880,7 @@ and then apply $\mathsf{Fun}$
 to get to the property for pushouts).
 
 Now back to our objective,
-by the 2-for-3-ish for left-orthogonality,
+by the 3-for-2-ish for left-orthogonality,
 now we aim to prove that
 $$
 \xymatrix{
@@ -1869,7 +1917,7 @@ of spaces.
 Fully faithful says $\partial[1] \to [1]$ is 
 left orthogonal to $F$. But by Theorem \ref{?}
 we also know it is conservative, so it's right orthogonal
-to $[1] \to [0]$. By 2-for-3, $\partial[1] \to [1] \to [0]$ 
+to $[1] \to [0]$. By 3-for-2, $\partial[1] \to [1] \to [0]$ 
 is left orthogonal to $F$. But we know that this is equivalent
 to being an equivalence on underlying groupoids
 \end{proof}
@@ -1923,32 +1971,29 @@ and then Remark
 \label{section-full-subcactegories}
 
 \noindent
-The following construction (fact) allows to construct an
-$\infty$-category from an $\infty$-groupoid $X$ and
-a map $X \to \mathcal{C}^\simeq$. In fact,
-this is the construction of a full subcategory
-from a subgroupoid of the underlying groupoid.
+This is the construction of a full subcategory
+from a subgroupoid of the underlying groupoid of the given category.
 
 Given an $\infty$-category $\mathcal{C}$
-and a monomorphism $i:X \to \mathcal{C}^\simeq$ of $\infty$-groupoids,
+and a monomorphism $i:X \hookrightarrow  \mathcal{C}^\simeq$ of $\infty$-groupoids,
 then there exist an $\infty$-category $i^*\mathcal{C}$
 and a functor of $\infty$-categories
 $\overline{i}:i^*\mathcal{C} \to \mathcal{C}$ 
 such that $(\overline{i})^\simeq \simeq i$
-(and $(i^*\mathcal{C})\simeq \simeq X$ should also hold)
+(and $(i^*\mathcal{C})\simeq X$ should also hold)
 and such that the following diagram
 $$
 \xymatrix{
 \mathsf{Map}(\mathcal{D},i^*\mathcal{C})\ar[r]\ar[d]&
 \mathsf{Map}(\mathcal{D},\mathcal{C})\ar[d]\\
 \mathsf{Map}(\mathcal{D}^\simeq,X)\ar[r]&
-\mathsf{Map}(\mathcal{D}^\simeq,\mathcal{D}^\simeq).
+\mathsf{Map}(\mathcal{D}^\simeq,\mathcal{C}^\simeq).
 }
 $$
 is a pullback.
 
 Note that putting $\mathcal{D}=[1]$ 
-(which implies that $\mathcal{D}^\simeq=\partial[1]$),
+we get that $\mathcal{D}^\simeq=\partial[1]$,
 meaning that $\overline{i}$ is fully faithful.
 
 In the other direction, it's also true that any fully faithful
@@ -1961,18 +2006,21 @@ then $j \simeq \overline{j^\simeq}$.
 \end{lemma}
 
 \begin{proof}
-As in the proof of Lemma
-\ref{lemma-equivalence-iff-fully-faithful-and-essentially-surjective}
-we know that fully faithful gives monomorphism of underlying groupoids.
-Now, using the diagram in the construction above we can factor
+By Lemma
+\ref{lemma-full-faithful-implies-underlying-groupoid-map-is-monomorphism}
+we know that fully faithful gives monomorphism of underlying groupoids,
+which means that we can apply the construction above.
+Now, using the diagram above we can factor
 $$
 \xymatrix{
-\mathcal{D}\ar[r]^f\ar@/^{pc}/[rr]_j
+\mathcal{D}\ar[r]^f\ar@/_1em/[rr]_j
 &(j^\simeq)^*\mathcal{C} \ar[r]^{\overline{i}}
 &\mathcal{C}
 }
 $$
-…
+(Essentially by definition of pullback.)
+Further, by 3-for-2 in for fully faithful morphisms we may
+conclude that $f$ is an equivalence.
 \end{proof}
 
 \begin{lemma}
@@ -1982,7 +2030,7 @@ Essentially surjective functors are left orthogonal to fully faithful ones.
 
 \medskip\noindent
 We are almost done constructing a factorization system!
-Conside the functor  $F:\mathcal{C} to \mathcal{D}$ such that
+Consider the functor  $F:\mathcal{C} \to \mathcal{D}$ such that
 $F:\mathcal{C}^\simeq X \hookrightarrow \mathcal{D}^\simeq.$
 This gives
 
@@ -1997,8 +2045,8 @@ This is a fully faithful functor (picture).
 Then we apply that
 $$
 \xymatrix{
-\mathcal{C}\xrightarrow{\substack{\text{essentially} \\ \text{surjective}}}
-i^*\mathcal{D}\ar[r]^{\text{fully faithful}}.
+\mathcal{C}\ar[r]^{\substack{\text{essentially} \\ \text{surjective}}}&
+i^*\mathcal{D}\ar[r]^{\substack{\text{fully}\\ \text{faithful}}} & ?
 }
 $$
 for the case
@@ -2006,15 +2054,23 @@ $$
 C\xrightarrow{\simeq}\mathsf{Ar}_{\text{eq}}(\mathcal{C})
 \hookrightarrow \mathsf{Ar}(\mathcal{C}).
 $$
+Recall
+$$
+\xymatrix{
+\text{Spaces with a $G$-bundle} \ar[rd] \ar[rr] && \text{Spaces} \\
+& \text{Spaces admitting a $G$-bundle}\ar[ur]
+}
+$$
+So th
 Then we get 
 $$
-[\text{triangle diagram}].
+\text{triangle diagram}.
 $$
-
 \begin{lemma}
 \label{lemma-equivalence-equivalences}
 Suppose $f: x \to y$ is a morphism in an $\infty$-category.
 Then the following are equivalent:
+
 \begin{enumerate}
 \item $f$ is an equivalence.
 \label{item-equiv1}
@@ -2024,7 +2080,7 @@ For all $c \in \mathcal{C}$, the morphism
 $f_*\mathcal{C}(c,x) \to \mathcal{C}(c,y)$ is
 an equivalence of $\infty$-groupoids.
 \item 
-\label{item-equive3}
+\label{item-equiv3}
 For all $c \in \mathcal{C}$, the morphism
 $f^*\mathcal{C}(y,c)\to \mathcal{C}(x,c)$ 
 is an equivalence of $\infty$-groupoids.
@@ -2035,8 +2091,321 @@ is an equivalence of $\infty$-groupoids.
 2 $\implies$ 1. Put $c=x$ and then $c=y$. We obtain that
 $\mathcal{C}(x,x) \simeq \mathcal{C}(x,y)$
 and $\mathcal{C}(y,x) \simeq \mathcal{C}(y,y)$.
+
+{\bf Exercise.} Check that $- *$ is ``functorial''.
+Consider
+$$
+\xymatrix{
+C(x,y)\ar[r]\ar[d]&\mathcal{C}(c,y)\times \mathcal{C}(x,y)\ar[d]&
+\mathcal{C}(c,x)\ar[d]\\
+pt\ar[r]_{f}&\mathcal{C}(x,y)\ar[r]&pt
+}
+$$
+where the three squares are pullbacks.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-groupoid-iff-every-morphism-is-equivalence}
+An $\infty$-category $\mathcal{C}$ is an $\infty$-groupoid if
+and only if every morphism in $\mathcal{C}$ is an aquicalence.
+\end{lemma}
+
+\begin{lemma}
+\label{lemma-}
+A morphism $f \in \mathsf{Fun}(\mathcal{C},\mathcal{D})$ is an equivalence
+if and only if its
+\end{lemma}
+
+\begin{exercise}
+\label{exercise-2.18}
+The statement is equivalent to the fact that
+essentially surjective is left orthogonal to 
+conservative! [Picture]
+\end{exercise}
+
+\section{Monomorphisms of infinity categories}
+\label{section-monomorphisms-infty-categories}
+
+\begin{exercise}
+\label{exercise-2.19}
+Show that the following are equivalent for $F:\mathcal{C} \to \mathcal{D}$:
+\begin{enumerate}
+\item $F$ is a monomorphism.
+\item $F([i]):\mathcal{C}([i]) \to \mathcal{C}([i])$ 
+is a monomorphism of $\infty$-groupoids for $i=0,1$.
+\item $F$ is right orthogonal to $[i]\amalg[i]\to[i]$ for $i=0,1$.
+\end{enumerate}
+\end{exercise}
+
+\begin{proof}
+For $(1) \implies (2)$ just apply definition
+that pullbacks are detected on maps from $[0]$ and $[1]$.
+
+Now $(2) \implies (3)$ is definition of orthogonality on Maps.
+\end{proof}
+
+\begin{remark}
+\label{remark-only-on-1}
+By Observation 2.10.3, it really only matters what happens on $[1]$.
+\end{remark}
+
+\begin{exercise}
+\label{exercise-2.20}
+Use exercise dsadas
+\end{exercise}
+
+\begin{proof}
+Recall we already proved that
+$$
+\xymatrix{
+E \ar[rd] \ar[rr] && E' \ar[dl] \\
+& B
+}
+$$
+then $E \to W'$ is mono iff $F_b \to F'_b$ is mono for all $b \in B$.
+
+Then we have a square with bases $\mathcal{C}[0] \times \mathcal{C}[0]$ 
+and $\mathcal{D}[0]\times \mathcal{D}[0]$. But those are different bases!
+Then we can construct the pullback
+$$
+\xymatrix{
+pt\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&\mathcal{C}[0]\times\mathcal{C}[0]\ar[d]\\
+pt\ar[r]&\mathcal{D}[0]\times\mathcal{D}[0],
+}
+$$
+indeed, it's a pullback {\it when it exists}, since
+monomorphisms have fibers that are either empty of points,
+but in this case, it cannot be a point (why?!).
+\end{proof}
+
+\noindent
+Now some intuition on what is a monomorphism in 1-categories:
+if $f\in \mathcal{C}$ is an isomorphism, then $F(f)$ is an isomorphism too.
+
+\begin{lemma}
+\label{lemma-monomorphisms-are-conservative}
+Monomorphisms are conservative.
+\end{lemma}
+
+\begin{proof}
+consider
+$$
+[1] \amalg [1] \to [1] \perp F \implies  [1] \to [0] \perp F.
+$$
+We want to argue that $[1] \to [0]$ is a retract of
+$[0] \amalg [1]\to [0]$.
+
+$$
+\xymatrix{
+[1]\ar[d]\ar[r]^f&[0]\ar[d]\\
+[1] \amalg [1]\ar[r]^{f \amalg \text{id}}\ar[d]^{\text{id} \amalg \text{id}}&
+[0] \amalg[1]\ar[d]^{\text{left. o. to }F}\\
+[1]\ar[r]& [0]
+}
+$$
+Then the upper square is a pushout.
+The outer square it's all identities, so it's also a pushout.
+This gives that the two vertical lower arrows
+are orthogonal to each other.
+That's equivalent to the diagram in Observation 2.10.3.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-fully-faithful-are-conservative}
+Fully faithful functors are conservative.
+\end{lemma}
+
+\begin{proof}
+Use that monomorphism iff monomorphism on groupoids
+and on mapping spaces.
+\end{proof}
+
+\section{Subcategories}
+\label{section-subcategories}
+
+\noindent
+A similar construction to that of full subcategories
+yields the notion of subcategory.
+
+\section{Left and right fibrations}
+\label{section-left-and-right-fibrations}
+
+\begin{definition}
+\label{definition-left-right-fibrations}
+A functor of $\infty$-categories $p:\mathcal{E} \to \mathcal{B}$
+is a {\it left fibration} if it is right orthogonal to the
+inclusion $\{0\}\to [1]$, and a {\it right fibration} 
+if it is orthogonal to $\{1\}\to [1]$.
+Equivalently, $p$ is a left or right fibration if
+the corresponding commutative square
+$$
+\xymatrix{
+\mathsf{Map}([1],\mathcal{E})\ar[r]\ar[d]&\mathsf{Map}([1],\mathcal{B}\ar[d]\\
+\mathcal{E}^\simeq\ar[r]&\mathcal{B}^\simeq
+}
+$$
+is a pullback.
+\end{definition}
+
+\begin{exercise}
+\label{exercise-3.1}
+Every left/right fibration is conservative.
+\end{exercise}
+
+\begin{proof}
+Put orthogonal diagram in $\mathsf{Map}$ form,
+but it doesn't match exactly.
+The same happens when we look at
+Exercise \ref{exercise-equivalences-for-conservative-functor}.
+By the way: shouldn't we use $\mathsf{Fun}$ instead of $\mathsf{Map}$ 
+when we work with $\infty$-categories instead of $\infty$-groupoids?
+\end{proof}
+
+\begin{lemma}
+\label{lemma-fibrations-etale-space-is-groupoid}
+If $\mathcal{B}$ is an $\infty$-groupoid,
+then a functor $p:\mathcal{E} \to \mathcal{B}$
+is a left/right fibration if and only if $\mathcal{E}$ 
+is an $\infty$-groupoid. In particular,
+any morphism of $\infty$-groupoids
+is both a left and right fibration.
+\end{lemma}
+
+\begin{proof}
+The proof looks good: I think the vertical maps
+are induced from maps $[0] \to [1]$ and $[1] \to [0]$.
+But how is the former defined? We can just take
+any of the two maps $[0]\to[1]$:
+each of these concerns the left/right fibration case.
+We see that either choice implies that $\mathcal{E}$ is
+an $\infty$-groupoid, and that $\mathcal{E}$ being an
+$\infty$-groupoid implies both.
+\end{proof}
+
+\noindent
+Next we have a characterization:
+
+\begin{proposition}
+\label{proposition-fibration-characterization}
+$p$ is a left/right fibration if and only if the commutative square
+$$
+\xymatrix{
+\mathsf{Ar}(\mathcal{E})\ar[r]\ar[d]&\mathsf{Ar}(\mathcal{B})\ar[d]\\
+\mathcal{E}\ar[r]&\mathcal{B}
+}
+$$
+is a pullback.
+\end{proposition}
+
+\begin{proof}
+This is complicated.
+\end{proof}
+
+\noindent
+But it gives a nice corollary:
+
+\begin{lemma}
+\label{lemma-induced-map-fibration}
+If $p:\mathcal{E}\to\mathcal{B}$ is a left/right fibration,
+then so is $p_*:
+\mathsf{Fun}(\mathcal{C},\mathcal{E})\to\mathsf{Fun}(\mathcal{C},\mathcal{B})$ 
+for any category $\mathcal{C}$.
+\end{lemma}
+
+\begin{proof}
+It follows easily from the characterization.
+\end{proof}
+
+\noindent
+Now we characterize fibrations that are also equivalences:
+
+\begin{proposition}
+\label{proposition-fibration-equivalence}
+The following are equivalent for a left (or right)
+fibration $p:\mathcal{E} \to \mathcal{B}$:
+
+\begin{enumerate}
+\item $p$ is an equivalence.
+\item The map on cores $p^\simeq:\mathcal{E}^\simeq\to\mathcal{B}^\simeq$
+is an equivalence of $\infty$-groupoids.
+\item The fibre $\mathcal{E}_b$ is contractible for every $b \in \mathcal{B}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Easy, uses previous exercises. 
+\end{proof}
+
+\begin{remark}[3-for-2]
+\label{remark-3-for-2}
+Given a commutative triangle
+$$
+\xymatrix{
+\mathcal{E} \ar[rd]_{p} \ar[rr]_{F} && \mathcal{F} \ar[dl]^{q} \\
+& \mathcal{B}
+}
+$$
+where $p$ and $q$ are both left (or both right)
+fibrations, then so if $F$.
+This follows easily by 3-for-2 for pullback squares.
+\end{remark}
+
+\noindent
+The following proposition looks very similar to
+Proposition \ref{proposition-fibration-equivalence}.
+The only difference is on the third condition:
+this time we look at the fibers of the base
+and total space over $\mathcal{B}$ 
+(last time we asked that the fibers
+of the fibration itself).
+
+\begin{lemma}
+\label{lemma-fibration-equivalence2}
+Suppose given a commutative triangle
+$$
+\xymatrix{
+\mathcal{E} \ar[rd]_{p} \ar[rr]_{F} && \mathcal{F} \ar[dl]^{q} \\
+& \mathcal{B}
+}
+$$
+where $p$ and $q$ are both left (or both right) fibrations.
+Then the following are equivalent.
+\begin{enumerate}
+\item $F$ is an equivalence.
+\item The underlying map of $\infty$-groupoids
+$\mathcal{E}^\simeq\to\mathcal{F}^\simeq$ is an equivalence.
+\item The functor on fibres $\mathcal{E}_b\to\mathcal{F}_b$
+is an equivalence for all $b \in \mathcal{B}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The first two conditions are given by
+Proposition \ref{proposition-fibration-equivalence}
+and Remark \ref{remark-3-for-2}.
+For the last one we apply Exercise \ref{exercise-2.2}.
+\end{proof}
+
+\begin{exercise}
+\label{exercise-pullback-iff-fiber-maps-are-equivalences}
+Show that a commutative square
+$$
+\xymatrix{
+\mathcal{E}\ar[r]\ar[d]_{p}&\mathcal{F}\ar[d]^{q}\\
+\mathcal{B}\ar[r]_{F}&\mathcal{C}
+}
+$$
+\end{exercise}
+
+\begin{proof}
+I think this would be proved
+essentially as Lemma
+\ref{lemma-pullback-iff-fiber-maps-are-equivalences-groupoids},
+using the recently proved Lemma \ref{lemma-fibration-equivalence2}.
+(Notice that the fact that the fibres are groupoids
+follows from Exercise \ref{exercise-3.1} and Exercise
+\ref{exercise-equivalences-for-conservative-functor}.
+\end{proof}
 
 \bibliography{my}
 \bibliographystyle{amsalpha}
