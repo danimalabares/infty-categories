@@ -2405,10 +2405,179 @@ using the recently proved Lemma \ref{lemma-fibration-equivalence2}.
 (Notice that the fact that the fibres are groupoids
 follows from Exercise \ref{exercise-3.1} and Exercise
 \ref{exercise-equivalences-for-conservative-functor}.
+It's true, with a single nuance: that we need to prove that the pullback $p$ 
+is a right/left fibration when $q$ is.
+To prove this we need to use a cube diagram,
+see picture.
 \end{proof}
+
+
+
+\section{Slice categories}
+\label{section-slice}
+
+Let $\mathcal{C}$ be a 1-category and $x \in \Ob \mathcal{C}$.
+Then the {\it slice category} $\mathcal{C}/x$ 
+is the 1-category whose objects are morphisms
+$y \to x$ in $\mathcal{C}$, and morphisms are
+$$
+\xymatrix{
+y\ar[dd]\ar[dr]\\
+& x\\
+y'\ar[ur]
+}
+$$
+
+It turns out that the slice category is the pullback
+$$
+\xymatrix{
+\mathcal{C}/x\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&Ar(\mathcal{C})\ar[d]^{ev_1}\\
+\{x\}\ar[r]&\mathcal{C}
+}
+$$
+We claim that the map $ev_1$ is a fibration.
+(Shown in class.)
+
+\begin{definition}
+\label{definition-cone}
+For an $\infty$-category $\mathcal{K}$,
+the {\it left cone} $\mathcal{K}^{\triangleleft}$ 
+and {\it right cone} $\mathcal{K}^{\triangleright}$ on $\mathcal{K}$ 
+are defined by the pushouts
+\begin{align*}
+\mathcal{K}^{\triangleleft}&
+=\{-\infty\}\amalg_{\mathcal{K}\times\{0\}}\mathcal{K}\times[1]\\
+\mathcal{K}^{\triangleright}&
+=\mathcal{K}\times[1]\amalg_{\mathcal{K}\times\{1\}}\{\infty\}.
+\end{align*}
+The {\it cone point} is the object $\pm \infty$.
+\end{definition}
+
+It can be shown (or maybe we take as a fact)
+that cores and mapping spaces in the left cone $\mathcal{K}^{\triangleleft}$ 
+are given by
+\begin{align*}
+(\mathcal{K}^{\triangleleft})^\simeq&
+\simeq \{-\infty\}\amalg\mathcal{K}^\simeq,\\
+\mathcal{K}^{\triangleleft}(x,y)&=
+\begin{cases}
+\emptyset\qquad &x \in \mathcal{K}, y \simeq -\infty \\
+\ast,\qquad &x \simeq-\infty,
+\mathcal{K}(x,y),\qquad &x,y \in \mathcal{K}.
+\end{cases}
+\end{align*}
+
+\noindent
+It looks like: there are no maps from any object to $-\infty$,
+there is a single map coming from $-\infty$ to any object
+(i.e., the space of maps from $-\infty$ to any object is contractible).
+
+\begin{lemma}
+\label{lemma-pullback-cone}
+For $\infty$-categories $\mathcal{K}$ and $\mathcal{C}$ 
+and an object $x$ in $\mathcal{C}$,
+there are natural equivalences
+\begin{align*}
+\mathsf{Fun}(\mathcal{K},\mathcal{C}_{/x})&\simeq
+\mathsf{Fun}(\mathcal{K}^{\triangleright},\mathcal{C})
+\times_{\mathsf{Fun}(\{\infty\},\mathcal{C})}\{x\},\\
+\mathsf{Fun}(\mathcal{K},\mathcal{C}_{x/}&
+\simeq \mathsf{Fun}(\mathcal{K}^{\triangleleft},\mathcal{C})
+\times_{\mathsf{Fun}(\{-\infty\},\mathcal{C})}\{x\}.
+\end{align*}
+\end{lemma}
+
+\noindent
+I think of this as describing the fiber of $x$ from the
+projection $\mathcal{K}^{\triangleright} \to \{\infty\}$:
+$$
+\xymatrix{
+\bullet\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}
+&\mathsf{Fun}(\mathcal{K}^{\triangleright},\mathcal{C})\ar[d]\\
+\{x\}\ar[r]&\mathsf{Fun}(\{\infty\},\mathcal{C}),
+}
+$$
+i.e., the space of maps from $\infty$ to $x$.
+
+\medskip\noindent
+Looking back at the definition of cone
+with $\mathcal{K}=[1]$,
+if we can show that
+$$
+\xymatrix{
+\mathcal{K}\times\{1\}\simeq[1]\times\{1\}\ar[r]\ar[d]
+&\mathcal{K}\times[1]=[1]\times[1]\ar[d]\\
+\{\infty\}\simeq[0]\ar[r]&[2]
+}
+$$
+is a pushout, we can conclude that $[1]^{\triangleright}\simeq[2]$.
+I think this can be shown by showing
+that the outer square in the following diagram
+is a pushout, though I'm not sure if that's true:
+$$
+\xymatrix{
+[1]\ar[r]\ar[d]&[2]\ar[d]\\
+[2]\ar[r]\ar[d]&[2]\amalg_{[1]}[2]\simeq[1]\times[1]\ar[d]\\
+[0]\ar[r]&[2]\simeq[1]\amalg_{[0]}[1].
+}
+$$
+
+\section{Straightening for left and right fibrations}
+\label{section-straightening}
+
+\noindent
+Suppose $p:\mathcal{E} \to \mathcal{B}$ is a left fibration.
+``Then $p$ is supposed to determine a functor
+from $\mathcal{B}c$ to $\infty$-groupoids.''
+
+First we note that a morphism $f:b \to b'$ in $\mathcal{B}$
+we get maps on fibers $f_!:\mathcal{E}_b \to \mathcal{E}_{b'}$.
+$$
+\xymatrix{
+\mathcal{E}[0]\ar[d]&\mathcal{E}[1]\ar[l]^s\ar[d]\ar[r]^t&
+\mathcal{E}[0]\ar[d]\\
+\mathcal{B}[0]&\mathcal{B}[1]\ar[l]_s\ar[r]_t&\mathcal{B}[0]
+}
+$$
+where the left square is a pullback by definition of
+$p$ being a left fibration, which in turn gives
+equivalences on maps on fibers, so that we may invert the
+left morphism in
+$$
+\xymatrix{
+\mathcal{E}_b & \mathcal{E}[1]_f\ar[l]^\simeq \ar[r]& \mathcal{E}_{b'}.
+}
+$$
+Further, we see that $(\text{id}_b)_!$ is 
+homotopic to the identity of $\mathcal{E}_b$
+and that $(gf)_! \simeq g_!f_!$.
+Dually, a right fibration gives the
+basic data for a contravariant functor from
+$\mathcal{B}^{\text{op}}$ to $\infty$-groupoids.
+
+\medskip\noindent
+We introduce the fact that there is an $\infty$-category $\mathsf{Cat}_\infty$
+of $\infty$-categories. We denote $\mathsf{Gpd}_\infty$ 
+the full subcategory spanned by the $\infty$-groupoids.
+For an $\infty$-category $\mathcal{B}$,
+we denote $\mathsf{LFib}(\mathcal{B})$ and $\mathsf{RFib}(\mathcal{B})$
+the subcategories of $\mathsf{Cat}_{\infty/\mathcal{B}}$
+of left and right fibrations.
+
+\begin{theorem}[Lurie]
+\label{theorem-lurie}
+For an $\infty$-category $\mathcal{B}$, there is an equivalence
+$$
+\text{Str}_{\mathcal{B}}^L:\mathsf{LFib}(\mathcal{B})
+\overset{\sim}{\to}\mathsf{Fun}(\mathcal{B},\mathsf{Gpd}_\infty)
+$$
+called the {\it straightning equivalence} for left fibrations.
+This is moreover natural in $\mathcal{B}$ with respect
+to precomposition of functors and pullback of fibrations.
+\end{theorem}
+
 
 \bibliography{my}
 \bibliographystyle{amsalpha}
 
 \end{document}
-
