@@ -28,7 +28,7 @@ such that $F(h)=g$.
 \end{definition}
 
 \begin{exercise}
-\label{exercise-discrete-fibrations-over-category-are-presheaves}
+\label{exercise-discrete-fibrations-presheaves}
 Prove that discrete fibrations over a category $C$ correspond to presheaves over
 $C$.
 \end{exercise}
@@ -2462,7 +2462,7 @@ are given by
 \mathcal{K}^{\triangleleft}(x,y)&=
 \begin{cases}
 \emptyset\qquad &x \in \mathcal{K}, y \simeq -\infty \\
-\ast,\qquad &x \simeq-\infty,
+\ast,\qquad &x \simeq -\infty,\\
 \mathcal{K}(x,y),\qquad &x,y \in \mathcal{K}.
 \end{cases}
 \end{align*}
@@ -2511,16 +2511,25 @@ $$
 }
 $$
 is a pushout, we can conclude that $[1]^{\triangleright}\simeq[2]$.
-I think this can be shown by showing
-that the outer square in the following diagram
-is a pushout, though I'm not sure if that's true:
+Consider the following diagram,
+where we want to check that the double lower square is a pushout:
 $$
 \xymatrix{
-[1]\ar[r]\ar[d]&[2]\ar[d]\\
-[2]\ar[r]\ar[d]&[2]\amalg_{[1]}[2]\simeq[1]\times[1]\ar[d]\\
-[0]\ar[r]&[2]\simeq[1]\amalg_{[0]}[1].
+&[1]\ar[r]\ar[d]^{\substack{0\mapsto 0 \\ 1\mapsto 2}}
+&[2]\ar[d]\\
+[1]\ar[d]\ar[r]^{\substack{0 \mapsto 1 \\ 1 \mapsto 2}}
+&[2]\ar[r]\ar[d]^{\substack{0\mapsto 0 \\ 1 \mapsto 1\\2\mapsto 1}}
+&[2]\amalg_{[1]}[2]\simeq[1]\times[1]\ar[d]\\
+[0]\ar[r]_{0 \mapsto  1}&[1]\ar[r]_-{\substack{0 \mapsto 0 \\ 1 \mapsto 2}}&[2]\simeq[1]\amalg_{[0]}[1].
 }
 $$
+First observe that the lower left square is a pushout.
+This is by 2-for-3 since the upper right square is a pushout
+by pushout decomposition of $[1]\times[1]$
+and because the two composite vertical arrows are the identity.
+To conclude it's enough to show that the lower left square
+is also a pushout.
+
 
 \section{Straightening for left and right fibrations}
 \label{section-straightening}
@@ -2576,6 +2585,81 @@ This is moreover natural in $\mathcal{B}$ with respect
 to precomposition of functors and pullback of fibrations.
 \end{theorem}
 
+\section{Representability and the Yoneda embedding}
+\label{section-representability}
+
+\noindent
+An object $x \in \mathcal{C}$ is {\it initial } if $\mathcal{C}(x,c)$ 
+is contractible for all $c \in \mathcal{C}$ and
+{\it terminal} if $\mathcal{C}(c,x)$ is contractible for all $c$.
+
+\medskip\noindent
+It would be natural to define a left fibration $p:\mathcal{E} \to \mathcal{B}$ 
+to be co-representable if its corresponding straightening
+$\mathcal{B} \to \text{Grp}_\infty$
+
+Recall from 
+Exercise \ref{exercise-discrete-fibrations-presheaves}
+that in 1-categories we have an equivalence between presheaves
+$F:\mathcal{B}^{\text{op}}\to \mathsf{Sets}$
+and discrete fibrations $p:\mathcal{E} \to \mathcal{B}$.
+We define $F$ to be {\it representable} if $\mathcal{E}$ 
+has terminal object.
+
+\begin{exercise}
+\label{exercise-}
+Show that this definition is equivalent to
+having $\Hom(-,b_0) \cong F$.
+\end{exercise}
+
+\begin{proof}
+Recall from Exercise \ref{exercise-discrete-fibrations-presheaves}
+that $\mathcal{E}$ is defined so that the fiber of $b \in \mathcal{B}$ 
+is the set $F(b)$. More exactly, the objects of $\mathcal{E}$
+are pairs $(e,b)$ with $b \in \mathcal{B}$ and $e \in F(b)$.
+The morphisms are pairs $(f,F(f))$ for $f:b' \to b$ in $\mathcal{B}$.
+
+Suppose that $\underline{e}=(e,p(e))$ is a terminal object of $\mathcal{E}$.
+We claim that $\Hom(-,p(e))\cong F$.
+Let $b \in \mathcal{B}$. Let's check that
+$\Hom(b,p(e))\simeq F(b)$ as sets.
+By definition of discrete
+fibration for every map $f:b\to p(e)$ 
+there is a unique map $g:e' \to e$ such that $p(g)=f$.
+Then the element $e'$ is in $F(b)$.
+To see that this correspondence is natural in $b$
+pick a map $h:b_1 \to b$.
+We have an induced map $F(h):F(b) \to F(b_1)$
+that for any map $f \in \Hom(b,p(e))$
+puts the element we found $e'$
+to an element $e_1'$ in the set $b_1$,
+which is the $p$-fiber of $b_1$ by definition of $p$.
+$$
+\xymatrix{
+f\ar@{|->}[d]&\Hom(b,p(e))\ar[r]\ar[d]_{h^*}&F(b)\ar[d]^{F(h)}&e'\ar@{|->}[d]\\
+fh&\Hom(b_1,p(e))\ar[r]&F(b_1)& e_1'.
+}
+$$
+To confirm that the diagram commutes we need to check
+that this element $e_1'$ is the source of the unique
+lift of the map $fh$. Since $\underline{e}=(e,p(e))$ is terminal,
+there is only one map in $\mathcal{E}$
+with target $\underline{e}$ and thus 
+the source of the lift of $fh$ is uniquely determined.
+
+Conversely, suppose that $\Hom(-,b_0)\cong F$ for some $b_0 \in \mathcal{B}$.
+To find a terminal object in $\mathcal{E}$ we look
+for a distinguished element in the fiber of $b_0$
+(which is the set $F(b_0)$ by construction).
+We claim that the element corresponding to the identity
+in $\Hom(b_0,b_0)\cong F(b_0)=p^{-1}(b_0)$
+is terminal. Let us denote this element by 
+$\underline{e}=(e,p(e)) \in \mathcal{E}$.
+Let $f:\underline{e}' \to \underline{e}$ be any morphism in $\mathcal{E}$.
+This gives a map on $\mathcal{B}$ by $p(f):p(e')\to p(e)=b_0$.
+Since $p$ is a discrete fibration, there exists a unique morphism
+in $\mathcal{E}$ lifting $p(f)$, which must be $f$.
+\end{proof}
 
 \bibliography{my}
 \bibliographystyle{amsalpha}
