@@ -2259,6 +2259,7 @@ The same happens when we look at
 Exercise \ref{exercise-equivalences-for-conservative-functor}.
 By the way: shouldn't we use $\mathsf{Fun}$ instead of $\mathsf{Map}$ 
 when we work with $\infty$-categories instead of $\infty$-groupoids?
+[This was solved in class, there must be a picture.]
 \end{proof}
 
 \begin{lemma}
@@ -2530,6 +2531,39 @@ and because the two composite vertical arrows are the identity.
 To conclude it's enough to show that the lower left square
 is also a pushout.
 
+\medskip\noindent
+Here's a summary of what else is in the chapter.
+Proposition 3.3.7 on two pullback squares.
+The exercise that the left and right cones of $[n]$ are both $[n+1]$.
+Corollaruy: $C_{/c}\to \mathcal{C}$ is right fibration
+if and only if $C_{c/}\to \mathcal{C}$ is left fibration.
+Corollary: for a morphism  $f:x \to y$ in an $\infty$-category $\mathcal{C}$,
+we have $(C_{/y})_{/f}\xrightarrow{\sim}\mathcal{C}_{/x}$
+and $(\mathcal{C}_{x/})_{f/}\xrightarrow{\sim}\mathcal{C}_{y/}$.
+
+\medskip\noindent
+This one I like:
+
+\begin{lemma}
+\label{lemma-left-fibration-iff-induced}
+A functor $p:\mathcal{E} \to \mathcal{B}$ is a
+right fibration of and only if
+$\mathcal{E}_{/k}\to\mathcal{B}_{/p(x)}$
+is an equivalence for all $x$, and a
+left fibration
+if and only if for every $x \in \mathcal{E}$,
+the induced functor $\mathcal{E}_{x/}\to \mathcal{B}_{p(x)/}$ 
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Did in class. Maybe this is already somewhere else in this document?
+\end{proof}
+
+
+
+
+
 
 \section{Straightening for left and right fibrations}
 \label{section-straightening}
@@ -2537,7 +2571,7 @@ is also a pushout.
 \noindent
 Suppose $p:\mathcal{E} \to \mathcal{B}$ is a left fibration.
 ``Then $p$ is supposed to determine a functor
-from $\mathcal{B}c$ to $\infty$-groupoids.''
+from $\mathcal{B}\text{}$ to $\infty$-groupoids.''
 
 First we note that a morphism $f:b \to b'$ in $\mathcal{B}$
 we get maps on fibers $f_!:\mathcal{E}_b \to \mathcal{E}_{b'}$.
@@ -2592,6 +2626,35 @@ to precomposition of functors and pullback of fibrations.
 An object $x \in \mathcal{C}$ is {\it initial } if $\mathcal{C}(x,c)$ 
 is contractible for all $c \in \mathcal{C}$ and
 {\it terminal} if $\mathcal{C}(c,x)$ is contractible for all $c$.
+A right fibration $p:\mathcal{E} \to \mathcal{B}$ is
+{\it representable} if $\mathcal{E}$ has a terminal object
+and a left fibration $p:\mathcal{E} \to \mathcal{B}$ is
+{\it corepresentable} if $\mathcal{E}$ has an initial object.
+We say that $p$ is {\it represented} by $b \in \mathcal{B}$
+is $\mathcal{E}$ has a terminal object that lies over $b$,
+and that $x \in \mathcal{E}$ {\it exhibits} $p$ 
+as represented by $b$ if $x$ is terminal
+and $p(x)\simeq b$.
+
+\begin{lemma}
+\label{lemma-equivalence-iff-initial}
+The object $x$ is initial if and only if $\mathcal{C}_{x/}\to \mathcal{C}$ 
+is an equivalence, and terminal if and only if $\mathcal{C}_{/x}\to \mathcal{C}$ 
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Since $C_{x/}\to \mathcal{C}$ is a left fibration (why?)
+it's enough to show that the induced maps on fibers of
+the diagram
+$$
+\xymatrix{
+\mathcal{C}(x,y)\ar[r]\ar[d]&C_{x/}\ar[d]\\
+\{y\}\ar[r]&\mathcal{C}
+}
+$$
+is a puback. [See picture.]
+\end{proof}
 
 \medskip\noindent
 It would be natural to define a left fibration $p:\mathcal{E} \to \mathcal{B}$ 
@@ -2660,6 +2723,129 @@ This gives a map on $\mathcal{B}$ by $p(f):p(e')\to p(e)=b_0$.
 Since $p$ is a discrete fibration, there exists a unique morphism
 in $\mathcal{E}$ lifting $p(f)$, which must be $f$.
 \end{proof}
+
+\medskip\noindent
+The following explanation is quite illuminating.
+Let's informally define a Lie groupoid to be a groupoid object
+in the category of differentiable manifolds 
+(see nLab \href{url}{Lie groupoid} and
+\href{https://ncatlab.org/nlab/show/Lie+groupoid}{groupoid object}).
+Actually, this just means that it is a representable
+presheaf of groupoids (perhaps with some other conditions).
+That is, a Lie groupoid is a representable functor
+$\text{Diff}^{\text{op}}\to \text{Grpd}$.
+
+\begin{definition}
+\label{definition-representable-presheaf}
+We say a presheaf $\phi:\mathcal{B}^{\text{op}}\to \mathsf{Gpd}_\infty$
+is {\it representable} if the corresponding right fibration
+is representable, and that a copresheaf
+$\mathcal{B}\to \mathsf{Gpd}_\infty$ is {\it correpresentable} 
+if the corresponding left fibration is corepresentable.
+We say that $\phi$ is {\it represented} by $b \in \mathcal{B}$ 
+and that a point $x \in \phi(b)$ {\it exhibits} $\phi$ 
+as represented by $b$.
+\end{definition}
+
+\medskip\noindent
+Let's do a quick digression for Yoneda lemma.
+First recall the usual Yoneda lemma.
+The easiest way to remember this is that
+the yoneda map $a \to h_a:=\Hom(-,a)$ is an
+embedding $\mathcal{C} \to \text{Psh}$.
+But that's not very precise.
+What is precise is to say that
+$$
+\text{Nat}(\Hom(-,b),X) \cong X(b).
+$$
+This is Yoneda lemma (see Categories, Lemma \ref{lemma-yoneda}).
+There are distinguished objects:
+\begin{align*}
+\text{Nat}(\Hom(-,b),X)&\cong X(b)\\
+\text{id}_b \mapsto \eta(\text{id}_b)& \eta(\text{id}_b)\\
+(f:c \to b) \mapsto f^*(\eta(\text{id}_b))&
+\end{align*}
+
+\noindent
+But we are interested in another version,
+let me put it as a lemma:
+
+\begin{lemma}
+\label{lemma-yoneda-equivalence-presheave-category}
+Yoneda lemma is equivalent to $(\Hom(-,b),\text{id}_b)$ is
+the initial object in $\mathcal{C}$, where $\mathcal{C}$ is defined as the
+category whose objects are presheaves $X$
+over a given category $\mathcal{B}$ together with a
+choice of object $x \in X(b)$,
+and morphisms are morphisms of presheaves that preserve the
+chosen object.
+\end{lemma}
+
+\noindent
+Via straightening, there is more:
+
+\begin{lemma}
+\label{lemma-yoneda-equivalence-fibrations}
+Yoneda lemma is equivalent
+to the category of discrete fibrations $\mathcal{E} \to \mathcal{B}$ 
+with a choice of object $e \in \mathcal{E}$ over $b$
+having an initial object.
+(and such an initial object is a discrete fibration
+with a terminal object in $\mathcal{E}$).
+\end{lemma}
+
+Left as an exercise.
+
+
+\medskip\noindent
+Now recall Lemma \ref{lemma-left-fibration-iff-induced},
+it says that the top arrow in the following diagram
+is an equivalence
+$$
+\xymatrix{
+\mathcal{E}_x\ar[r]^\sim\ar[d]&\mathcal{B}_{/b}\ar[d]\\
+\mathcal{E}\ar[r]^p&\mathcal{B}.
+}
+$$
+Invert the equivalence to obtain a map over $\mathcal{B}$:
+$$
+\xymatrix{
+\mathcal{B}_{/b} \ar[rd] \ar[rr] && \mathcal{E} \ar[dl]^{p} \\
+& \mathcal{B}.
+}
+$$
+which takes $\text{id}_b$ to $x$.
+This leads to a section $s_x:\mathcal{B}_{/b}\to \mathcal{E}$.
+
+\medskip\noindent
+A proposition I did not understand properly,
+but seems not very hard to prove follows. And then,
+
+\begin{proposition}
+\label{proposition-maps-over-x-are-representable}
+$\text{id}_x$ is initial in $\mathcal{C}_{x/}$ 
+and terminal in $\mathcal{C}_{/x}$.
+In particular, $\mathcal{C}_{/x}\to \mathcal{C}$ 
+is a representable right fibration
+and $C_{x/}\to \mathcal{C}$ is a corepresentable left fibration.
+\end{proposition} 
+
+\begin{proof}
+Missing.
+\end{proof}
+
+\noindent
+This leads to a corollary:
+
+\begin{lemma}
+\label{lemma-fibration-equivalent-iff-is-maps-over-b-fibration}
+A right fibration over $\mathcal{B}$ is representable
+if and only if it is equivalent to $\mathcal{B}_{/b}\to \mathcal{B}$ 
+for some $b \in \mathcal{B}$,
+while a left fibration is corepresentable if and only if
+it is equivalent to $\mathcal{B}_{b/}\to \mathcal{B}$ 
+for some $b \in \mathcal{B}$.
+\end{lemma}
 
 \bibliography{my}
 \bibliographystyle{amsalpha}
