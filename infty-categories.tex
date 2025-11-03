@@ -2541,6 +2541,13 @@ Corollary: for a morphism  $f:x \to y$ in an $\infty$-category $\mathcal{C}$,
 we have $(C_{/y})_{/f}\xrightarrow{\sim}\mathcal{C}_{/x}$
 and $(\mathcal{C}_{x/})_{f/}\xrightarrow{\sim}\mathcal{C}_{y/}$.
 
+\begin{lemma}
+\label{lemma-3.3.9}
+For a morphism $f:x \to y$ in an $\infty$-category
+we have equivalences $(C_{/y})_{f/}/\simeq \mathcal{C}{/x} $.
+\end{lemma}
+
+
 \medskip\noindent
 This one I like:
 
@@ -2618,6 +2625,218 @@ called the {\it straightning equivalence} for left fibrations.
 This is moreover natural in $\mathcal{B}$ with respect
 to precomposition of functors and pullback of fibrations.
 \end{theorem}
+
+\section{Cartesian and cocartesian fibrations}
+\label{section-cartesian-fibrations}
+
+\noindent
+The idea here is to generalize the notion of right fibration
+to some object whose fibers are not necessarily $\infty$-groupoids
+(recall that a fibration is conservative, which implies its fibers
+are $\infty$-groupoids).
+
+\begin{exercise}
+\label{exercise-3.5}
+Given a functor  $p: \mathcal{E} \to \mathcal{B}$ and a morphism
+$f: x \to y$ in $\mathcal{E}$, show that for an object
+$z \in \mathcal{E}$ we get commutative squares
+$$
+\xymatrix{
+\mathcal{E}(y,z)\ar[r]^{f^*}\ar[d]&\mathcal{E}(x,z)\ar[d]\\
+\mathcal{B}(py,pz)\ar[r]_{p(f)^*}&\mathcal{B}(px,pz)
+}
+\qquad 
+\xymatrix{
+\mathcal{E}(z,x)\ar[r]^{f_*}\ar[d]&\mathcal{E}(z,y)\ar[d]\\
+\mathcal{B}(pz,px)\ar[r]_{p(f)_*}&\mathcal{B}(pz,py)
+}
+$$
+by taking appropriate fibers in a cube with top face
+$$
+\xymatrix{
+\mathcal{E}[2]\ar[r]^{d_1}\ar[d]&\mathcal{E}[1]\ar[d]\\
+\mathcal{B}[2]\ar[r]_{d_1}&\mathcal{B}[1].
+}
+$$
+Similarly we have the diagrams
+$$
+\xymatrix{
+\mathcal{E}_{y/}\ar[r]^{f^*}\ar[d]&\mathcal{E}_{x/}\ar[d]\\
+\mathcal{B}_{py/}\ar[r]_{p(f)^*}&\mathcal{B}_{px/}
+}\qquad 
+\xymatrix{
+\mathcal{E}_{/x}\ar[r]^{f_*}\ar[d]&\mathcal{E}_{/y}\ar[d]\\
+\mathcal{B}_{/px}\ar[r]_{p(f)_*}&\mathcal{B}_{/py}.
+}
+$$
+\end{exercise}
+
+\begin{proof}
+We use the proof of Lemma \ref{lemma-3.3.9}
+to construct the following complicated diagram:
+
+$$
+[\text{see photo}]
+$$
+
+This then leads to
+$$
+\xymatrix{
+\mathcal{E}_{/x}\ar[rd]\ar[rr]^{\text{right fib.}}\ar[ddd]
+& & \mathcal{E}_{/y}\ar[ddd]\ar[dl]\\
+& \mathcal{E}\ar[d]\\
+&\mathcal{B}\\
+\mathcal{B}_{px}\ar[ur]\ar[rr]_{\text{right fib.}}&&
+\mathcal{B}_{py}\ar[lu]
+}
+$$
+and in fact the commutativity of the first diagram
+in the exercise is given by taking the fibres
+of this last diagram by the diagonal arrows.
+\end{proof}
+\noindent
+From this we can define $p$-cartesian as in 1-categories:
+
+\begin{definition}
+\label{definition-p-cocartesian}
+Given a functor $p:\mathcal{E} \to \mathcal{B}$,
+we say a morphism $f:x\to y$ 
+in $\mathcal{E}$ is {\it $p$-cocartesian} 
+if for every object $z \in \mathcal{E}$, the commutative square
+$$
+\xymatrix{
+\mathcal{E}(y,z)\ar[r]^{f^*}\ar[d]&\mathcal{E}(x,y)\ar[d]\\
+B(py,pz)\ar[r]_{p(f)^*}&\mathcal{B}(px,pz)
+}
+$$
+is a pullback. Dually, we say that $f$ is {\it $p$-cartesian}
+if all squares
+$$
+\xymatrix{
+\mathcal{E}(z,x)\ar[r]^{f_*}\ar[d]&\mathcal{E}(z,y)\ar[d]\\
+\mathcal{B}(pz,px)\ar[r]_{p(f)_*}&\mathcal{B}(pz,py)
+}
+$$
+are pullbacks.
+\end{definition}
+
+\noindent
+This is basically the definition we had for
+cartesian (and cocartesian, by inverting the arrows)
+for 1-categories. Namely, for cocartesian, that given the diagram
+$$
+\xymatrix{
+p(x) \ar[rd]_{p(f)} \ar[rr]_{p(g)} && p(z) \ar[dl]^{\phi} \\
+&p(y)
+}
+$$
+there is a unique lift
+$$
+\xymatrix{
+x \ar[rd]_{f} \ar[rr]_{g} && z\ar@{-->}[dl] \\
+&y
+}
+$$
+\begin{exercise}
+\label{exercise-3.6}
+A morphism is $p$-cocartesian if and only if
+$$
+\xymatrix{
+\mathcal{E}_{y/}\ar[r]^{f^*}\ar[d]&\mathcal{E}_{x/}\ar[d]\\
+\mathcal{B}_{py/}\ar[r]_{p(f)^*}&\mathcal{B}_{px/}
+}
+$$
+is a pullback.
+\end{exercise}
+
+\begin{proof}
+We have constructed a diagram of two cubes on top of each other.
+In fact, this can be thought of as shifts in derived category.
+
+Here's a cube diagram test:
+
+$$
+\vcenter{
+\xymatrix{
+& A \ar[rr] \ar'[d][dd] & & B \ar[dd] \\
+C \ar[rr] \ar[dd] \ar[ru] & & D \ar[dd] \ar[ru] & \\
+& E \ar'[r][rr] & & F \\
+G \ar[rr] \ar[ru] & & H \ar[ru]
+}
+}
+$$
+\end{proof}
+
+\begin{lemma}
+\label{lemma-3.5.3}
+This looks like a 2-for-3 for cocartesian maps.
+\end{lemma}
+
+\begin{definition}
+\label{definition-cocartesian-lift}
+Given a morphism $f:a \to b$ in $\mathcal{B}$
+and an object $x \in \mathcal{E}$
+\end{definition}
+
+\begin{lemma}
+\label{lemma-3.5.5.}
+Lifts of $p$-cartesian if and only if … equivalence.
+\end{lemma}
+
+\begin{lemma}
+\label{lemma-3.5.6}
+Complicated monomorphism statement.
+\end{lemma}
+
+\begin{proposition}
+\label{proposition-left-fibrations-are-cocartesian}
+Left fibrations are $p$-cocartesian and right fibrations are $p$-cartesian.
+\end{proposition}
+
+\noindent
+The following lemma shows that for cocartesian fibrations
+right fibrations are equivalent
+fibrations in $\infty$-groupoids.
+
+\begin{lemma}
+\label{lemma-cocartesian-fibration-equivalences}
+Suppose $p:\mathcal{E} \to \mathcal{B}$ a cocartesian fibration.
+Then the following are equivalent:
+\begin{enumerate}
+\item $p$ is a left fibration (which is the same as saying it's
+a fibration in $\infty$-groupoids).
+\label{item-cocartesian1}
+
+\item Every morphism in $\mathcal{E}$ is $p$-cocartesian.
+\label{item-cocartesian2}
+
+\item $p$ is conservative.
+\label{item-cocartesian3}
+
+\item The fibers of $p$ are $\infty$-groupoids.
+\label{item-cocartesian4}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We already proved (\ref{item-cocartesian1}) implies (\ref{item-cocartesian2})
+(?). For (\ref{item-cocartesian2})implies (\ref{item-cocartesian1}) we consider
+$$
+\xymatrix{
+\mathcal{E}[1]_{\text{cartesian}} \ar[rd]_{\simeq} \ar[rr]^{\simeq} && 
+\mathcal{B}[1]\times_{\mathcal{B}}\mathcal{E}^{\simeq} \\
+& \mathcal{E}[1]\ar[ur]_{\simeq}
+}
+$$
+We already know that (\ref{item-cocartesian3}) is equivalent to
+(\ref{item-cocartesian4}).
+
+To prove that (\ref{item-3}) implies (\ref{item-2})
+we use the property that conservative functors
+lift equivalences to equivalences (?).
+
+
+\end{proof}
 
 \section{Representability and the Yoneda embedding}
 \label{section-representability}
