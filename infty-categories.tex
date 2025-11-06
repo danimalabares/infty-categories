@@ -1083,8 +1083,9 @@ the space of diagonal lifts $B \to X$ is contractible.
 \end{definition}
 
 \noindent
-A choice of horizontal arrows in the former
-diagram is equivalent to a choice of element in
+The key observation is that
+a choice of horizontal arrows making the former
+diagram commute is the same as a choice of element in
 $\mathsf{Map}(B,Y)\times_{\mathsf{Map}(A,Y)}\mathsf{Map}(A,X)$.
 Indeed, given a map $A\to X$,
 we may poscompose with $r$ to obtain
@@ -2723,20 +2724,20 @@ are pullbacks.
 \noindent
 This is basically the definition we had for
 cartesian (and cocartesian, by inverting the arrows)
-for 1-categories. Namely, for cocartesian, that given the diagram
+for 1-categories. Namely, for cocartesian, that given the solid diagram
 $$
 \xymatrix{
-p(x) \ar[rd]_{p(f)} \ar[rr]_{p(g)} && p(z) \ar[dl]^{\phi} \\
-&p(y)
+&z\ar@{-->}[d]^{\exists !}\\
+x\ar[ur]^g\ar[r]_f&y
 }
-$$
-there is a unique lift
-$$
+\qquad \qquad 
 \xymatrix{
-x \ar[rd]_{f} \ar[rr]_{g} && z\ar@{-->}[dl] \\
-&y
+&p(z)\ar[d]^\phi\\
+p(x)\ar[ur]^{p(g)}\ar[r]_{p(f)}&p(y)
 }
 $$
+there is a unique dashed arrow.
+
 \begin{exercise}
 \label{exercise-3.6}
 A morphism is $p$-cocartesian if and only if
@@ -2752,19 +2753,6 @@ is a pullback.
 \begin{proof}
 We have constructed a diagram of two cubes on top of each other.
 In fact, this can be thought of as shifts in derived category.
-
-Here's a cube diagram test:
-
-$$
-\vcenter{
-\xymatrix{
-& A \ar[rr] \ar'[d][dd] & & B \ar[dd] \\
-C \ar[rr] \ar[dd] \ar[ru] & & D \ar[dd] \ar[ru] & \\
-& E \ar'[r][rr] & & F \\
-G \ar[rr] \ar[ru] & & H \ar[ru]
-}
-}
-$$
 \end{proof}
 
 \begin{lemma}
@@ -2787,6 +2775,67 @@ Lifts of $p$-cartesian if and only if … equivalence.
 \label{lemma-3.5.6}
 Complicated monomorphism statement.
 \end{lemma}
+
+\begin{proof}
+We start by presenting a general situation.
+We start with a $2\times 2$ square with homotopy
+fibers. We claim that it is well-defined, and proved it.
+
+Now we imagine another situation:
+a cube with the bottom and top faces that are pullbacks.
+Then we take homotopy fibre and produce a cube on top of
+the original cube. We claim that the top face
+is also a pullback. We take homotopy fibres producing
+a cube to one of the sides, then take homotopy
+fibre of the homotopy fibres,
+which gives an equivalence since the maps induced
+on homotopy fibres are equivalences.
+
+As for another equivalence for fibration,
+we have that the diagram
+$$
+\xymatrix{
+\mathsf{Ar}_{\text{cart}}(\mathcal{E})\ar[r]\ar[d]_{\text{ev}_1}&
+\mathsf{Ar}(\mathcal{B})\ar[d]^{\text{ev}_1}\\
+\mathcal{E}\ar[r]&\mathcal{B}
+}
+$$
+is a pullback. That is, that
+$$
+\mathsf{Ar}_{\text{cart}}(\mathcal{E})
+\simeq \mathcal{E}\times_{\mathcal{B}}\mathsf{Ar}(\mathcal{B}).
+$$
+This can also be represented as
+$$
+\xymatrixrowsep{2em}
+\xymatrixcolsep{2em}
+\xymatrix{
+\mathsf{Ar}_{\text{cart}}(\mathcal{E})\ar@{^{(}->}[r]
+&\mathsf{Ar}(\mathcal{E}) \ar[rrrd] \ar[rrd] \ar[rrdd]_{\text{ev}_1} & & \\
+& & & \mathcal{E}\times_{\mathcal{B}}\mathsf{Ar}(\mathcal{B}) \ar[d] \ar[r] 
+& \mathsf{Ar}(\mathcal{B}) \ar[d] \\
+& & & \mathcal{E} \ar[r] & \mathcal{B}
+}
+$$
+Applying $\mathsf{Map}([1],-)$ we obtain
+$$
+\xymatrixrowsep{2em}
+\xymatrixcolsep{2em}
+\xymatrix{
+\mathcal{E}[1]_{\text{cart}}\ar@/_{1pc}/[rrrd]\ar@{^{(}->}[r]
+&\mathcal{E}[1] \ar[rrrd] \ar[rrd] \ar[rrdd] & & \\
+& & &
+\mathcal{E}^{\simeq}\times_{\mathcal{B}^{\simeq}}\mathcal{B}[1]
+ \ar[d] \ar[r] 
+& \mathcal{B}[1] \ar[d] \\
+& & & \mathcal{E}^{\simeq} \ar[r] & \mathcal{B}^{\simeq}
+}
+$$
+where the arrow from $\mathcal{E}[1]$ to the pullback
+comes from the universal property of pullback.
+
+
+\end{proof}
 
 \begin{proposition}
 \label{proposition-left-fibrations-are-cocartesian}
@@ -2837,6 +2886,182 @@ lift equivalences to equivalences (?).
 
 
 \end{proof}
+
+
+\section{Arrow infty-categories and fibration}
+\label{section-arrow-infty-categories}
+
+\begin{proposition}
+\label{proposition-pullback-in-arrow-category}
+The mapping space of two morphisms
+$f:x \to y$ and $g:x'\to y'$ in an $\infty$-category is the pullback
+$$
+\xymatrix{
+\mathsf{Ar}(\mathcal{C})(f,g)\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}
+&\mathcal{C}(x,x')\ar[d]\\
+\mathcal{C}(y,y')\ar[r]_{f^*}&
+\mathcal{C}(x,y').
+}
+$$
+\end{proposition}
+
+\noindent
+Upshot: morphisms of morphisms are 
+a map of sources and map of targets such that
+composing with $f^*$ or $g_*$ accordingly
+give the same map.
+
+More precisely,
+the idea is as in Section \ref{section-lifting-properties},
+where we defined lifting as a pullback.
+In the current situation: a choice of 
+a map $x \to x'$ and a map $y \to y'$
+such that $x \to x' \xrightarrow{g_*}y'$ 
+coincides with
+$x \xrightarrow{f} y \to y'$,
+is just an element of
+$\mathcal{C}(x,x')\times_{\mathcal{C}(x,y')}\mathcal{C}(y,y')$.
+The proposition then says that morphisms from $f$ to $g$ 
+are the same as elements in such pullback.
+
+\begin{proof}
+Rune starts by saying that we want to find
+the fibre at $(f,g)$ of the map
+$$
+\mathsf{Fun}([1],\mathsf{Fun}([1],\mathcal{C}))=
+\mathsf{Map}([1]\times[1],\mathcal{C})\to\mathcal{C}[1]^{\times 2}.
+$$
+Why do we want that? Because that's just the definition
+of the mapping space $\mathsf{Ar}(x,y)$ 
+(see Definition \ref{definition-mapping-space}).
+\end{proof}
+
+\begin{exercise}
+\label{exercise-morphism-of-morphisms}
+Extend this description to show that for a morphism
+$\alpha:f \to g$ in $\mathsf{Ar}(\mathcal{C})$,
+given by a commutative square
+$$
+\xymatrix{
+x\ar[r]^{e}\ar[d]_{f}&z\ar[d]^{g}\\
+y\ar[r]_{h}&w,
+}
+$$
+precomposition with $\alpha$ fits in a commutative cube
+(where the left and right faces are pullbacks)
+$$
+\xymatrixrowsep{1em}
+\xymatrixcolsep{1em}
+\xymatrix{
+\mathsf{Ar}(\mathcal{C})(g,q) \ar[rr]^{\alpha^*} \ar[dd] \ar[rd] & & 
+\mathsf{Ar}(\mathcal{C})(f,q) \ar'[d][dd] \ar[rd] \\
+ & \mathcal{C}(z,u) \ar[rr]^(0.3){e^*} \ar[dd] & & \mathcal{C}(x,u) \ar[dd] \\
+\mathcal{C}(w,v) \ar'[r][rr]^{h^*} \ar[rd] & & \mathcal{C}(y,v) \ar[rd] \\
+ & \mathcal{C}(z,v) \ar[rr]^{e^*} & & \mathcal{C}(x,v)
+}
+$$
+for $q:u \to v$.
+\end{exercise}
+
+\begin{proof}
+By Proposition \ref{proposition-pullback-in-arrow-category}
+we know that the left and right faces are pullbacks.
+Then $\alpha^*$, $e^*$ and $h^*$ act as shown in the cube diagram.
+Thus I believe that it is only commutativity that we should prove…
+\end{proof}
+
+\begin{proposition}
+\label{proposition-evaluation-and-arrow}
+This looks like a technical proposition
+justifying Exercise \ref{exercise-morphism-of-morphisms},
+and to be used for proving the next lemma.
+\end{proposition}
+
+\begin{lemma}
+\label{lemma-p-cocartesian-characterization}
+Given a functor $p:\mathcal{E}\to\mathcal{B}$,
+the following are equivalent for a morphism
+$\overline{f}:x\to y$ in $\mathcal{E}$ 
+over $f:a \to b$ in $\mathcal{B}$:
+\begin{enumerate}
+\item The morphism $\overline{f}$ is $p$-cocartesian.
+\item For every morphism  …
+\end{enumerate}
+\end{lemma}
+
+\noindent
+The next proposition describes a situation
+in which we have a subcategory $S$ of arrows 
+and we construct a functor $p:\mathcal{E} \to \mathcal{B}$ 
+such that $S$ is the $p$-cocartesian maps.
+
+\begin{proposition}
+\label{proposition-subcategory-of-arrows}
+For a functor $p:\mathcal{E} \to \mathcal{B}$ and a monomorphism
+$S\hookrightarrow \mathcal{E}[1]$, let 
+$\mathsf{Ar}_S(\mathcal{E})\subseteq \mathsf{Ar}(\mathcal{E})$ 
+denote the full subcategory spanned by morphisms in $S$.
+Then the following are equivalent:
+\begin{enumerate}
+\item $p$ is a cocartesian fibration and  $S$ is the
+$\infty$-groupoid of $p$-cocartesian morphisms.
+\item The commutative square
+$$
+\xymatrix{
+\mathsf{Ar}_S(\mathcal{E})\ar[r]^{\text{ev}_0}\ar[d]&\mathcal{E}\ar[d]^{p}\\
+\mathsf{Ar}(\mathcal{B})\ar[r]_{\text{ev}_0}&\mathcal{B}
+}
+$$
+is a pullback.
+\end{enumerate}
+\end{proposition}
+
+We obtain a corollary that seems to establish
+that $\mathsf{Fun}(\mathcal{K},-)$ preserves
+cocartesian functors.
+
+\begin{lemma}
+\label{lemma-covariant-fun-preserves-cocartesian}
+Suppose $p:\mathcal{E}\to \mathcal{B}$ is a cocartesian fibration.
+Then for any $\infty$-category $\mathcal{K}$, the functor
+$$
+p_*:\mathsf{Fun}(\mathcal{K},\mathcal{E})
+\to\mathsf{Fun}(\mathcal{K},\mathcal{B})
+$$
+given by composition with $p$ is also a cocartesian fibration.
+A natural transformation $\phi:\mathcal{K}\times[1]\to\mathcal{E}$ 
+is $p_*$-cocartesian if and only if its components
+$\phi_a:[1]\to\mathcal{E}$are $p$-cocartesian for all $a \in \mathcal{K}$.
+\end{lemma}
+
+\noindent
+Then there's the part on the cocartesian transport functor.
+I think it goes like this: we use Proposition
+\ref{proposition-subcategory-of-arrows} to identify
+$\mathcal{E}\times_{\mathcal{B}}\mathsf{Ar}(\mathcal{B}) \simeq
+\mathsf{Ar}_{\text{coct}}(\mathcal{E})$.
+We have learnt to read elements in the pullback
+as pairs in the product that project nicely; namely,
+elements of $\mathcal{E}\times_{\mathcal{B}}\mathsf{Ar}(\mathcal{B})$ 
+are nothing but pairs $(x,f:p(x)\to b)$ according to the diagram
+$$
+\xymatrix{
+\mathcal{E}\times_{\mathcal{B}}\mathsf{Ar}(\mathcal{B})
+\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&
+\mathsf{Ar}(\mathcal{B})\ar[d]^{s}\\
+\mathcal{E}\ar[r]&\mathcal{B}.
+}
+$$
+Take any such pair, and consider a cocartesian lift.
+This gives a map on $\mathcal{E}$ with source $x$.
+Denote the target by $f_!x$.
+This map,
+$$
+\mathcal{E}\times_{\mathcal{B}}\mathsf{Ar}(\mathcal{B})
+\xrightarrow{\sim}\mathsf{Ar}_{\text{coct}}(\mathcal{E})
+\xrightarrow{\text{ev}_1}\mathcal{E},
+$$
+is called the {\it cocartesian transport functor}.
 
 \section{Representability and the Yoneda embedding}
 \label{section-representability}
