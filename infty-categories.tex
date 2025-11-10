@@ -2887,6 +2887,58 @@ lift equivalences to equivalences (?).
 
 \end{proof}
 
+\begin{proposition}
+\label{proposition-mophisms-of-cocartesian-fibrations-
+equivalence-iff-equivalence-of-fibres}
+If
+$$
+\xymatrix{
+\mathcal{E} \ar[rd]_{p} \ar[rr]_{F} && \mathcal{F} \ar[dl]^{q} \\
+& \mathcal{B}
+}
+$$
+is a morphism of cocartesian fibrations over $\mathcal{B}$ 
+then $F$ is an equivalence if and only if the induced
+map on fibres is an equivalence for all $b \in \mathcal{B}$.
+\end{proposition}
+
+\begin{proposition}
+\label{proposition-3.5.15}
+Pullback of fibration is fibration.
+\end{proposition}
+
+\begin{exercise}
+\label{exercise-pullback-iff-equivalence-on-fibers-for-infty-categrories}
+Suppose we have a morphism of (co-)cartesian fibrations $F$
+$$
+\xymatrix{
+\mathcal{E}\ar[r]^{F}\ar[d]_{p}&\mathcal{E}'\ar[d]^{p'}\\
+\mathcal{B}\ar[r]_{G}&\mathcal{B}'.
+}
+$$
+\end{exercise}
+
+\begin{proof}
+Factor the above square as
+$$
+\xymatrix{
+\mathcal{E}\ar[r]\ar[d]&\mathcal{E}'\times_{\mathcal{B}'}\mathcal{B}\ar[d]\ar[r]
+&\mathcal{E}'\ar[d]\\
+\mathcal{B}\ar[r]_{\text{id}}&\mathcal{B}\ar[r]&\mathcal{B}'
+}
+$$
+and apply the last two propositions.
+\end{proof}
+
+\begin{exercise}
+\label{exercise-pullback-of-three-fibrations}
+Pullback of three cocartesian fibrations…
+\end{exercise}
+
+
+
+
+
 
 \section{Arrow infty-categories and fibration}
 \label{section-arrow-infty-categories}
@@ -2934,6 +2986,24 @@ $$
 Why do we want that? Because that's just the definition
 of the mapping space $\mathsf{Ar}(x,y)$ 
 (see Definition \ref{definition-mapping-space}).
+
+To do it we notice that by the fact that in a general situation
+$$
+\xymatrix{
+\bullet\ar@{-->}[d]&\mathcal{E}_b\ar[d]\ar[r]& \mathcal{F}_b\ar[d]\\
+\bullet \ar[r]&\mathcal{E} \ar[rd] \ar[rr] && \mathcal{F} \ar[dl] \\
+&& \mathcal{B}
+}
+$$
+we get that the dashed arrow is
+an equivalence (because the square is a pullback:
+$$
+\xymatrix{
+\mathcal{E}_\ell\ar[r]\ar[d]&\mathcal{F}_\ell\ar[d]\ar[r]&pt\ar[d]\\
+\mathcal{E}\ar[r]&\mathcal{F}\ar[r]&\mathcal{B}),
+}
+$$
+so it's enough to work at the level of fibres.
 \end{proof}
 
 \begin{exercise}
