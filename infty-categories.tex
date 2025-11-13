@@ -1600,7 +1600,7 @@ $$
 Then we apply $\mathsf{Map}$ (I think) and get to
 $$
 \xymatrix{
-\mathsf{Map}([1),\mathcal{C})\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&
+\mathsf{Map}([1],\mathcal{C})\ar[r]\ar[d]\ar@{}[dr]|-{\lrcorner}&
 \mathsf{Map}([1],\mathcal{D})\ar[d]\\
 \mathsf{Map}([1],\mathsf{Fun}([1],\mathcal{C})\ar[r]\ar[d]^{=}&
 \mathsf{Map}([1],\mathcal{D})\ar[d]^=\\
@@ -1690,11 +1690,11 @@ $$
 \xymatrix{
 \text{fiber}\ar[d]\ar@{.>}[rr]^{\simeq}&&
 \mathcal{C}(x,y)\times \mathcal{C}(y,z)\ar[d]\\
-\mathsf{Fun}([2],\mathcal{C})\ar[r]^{\simeq}\ar[d]&
-\mathsf{Fun}([1]\amalg_{[0]}[1],\mathcal{C})\ar[r]^{\simeq}\ar[d]
+\mathsf{Fun}([2],\mathcal{C})\ar[r]^-{\simeq}\ar[d]&
+\mathsf{Fun}([1]\amalg_{[0]}[1],\mathcal{C})\ar[r]^-{\simeq}\ar[d]
 &\mathsf{Fun}([1],\mathcal{C})\times_{\mathsf{Fun}([0],\mathcal{C})}
 \mathsf{Fun}([1],\mathcal{C})\ar[ld]\\
-\mathcal{C}\times\mathcal{C}\times\mathcal{C}\ar[r]^{\simeq}&
+\mathcal{C}\times\mathcal{C}\times\mathcal{C}\ar[r]^-{\simeq}&
 (\mathcal{C} \times \mathcal{C})
 \times_{\mathcal{C}}(\mathcal{C}\times\mathcal{C})
 }
@@ -2677,7 +2677,17 @@ We use the proof of Lemma \ref{lemma-3.3.9}
 to construct the following complicated diagram:
 
 $$
-[\text{see photo}]
+\xymatrix{
+&C_{/y}\ar[r]&\mathsf{Ar}(\mathcal{C})\ar[r]^s&\mathcal{C}\\
+(\mathcal{C}_{/y})_{/f}\ar@{-->}[ur]\ar[r]\ar[d]
+&\mathsf{Ar}(\mathcal{C}_{/y})\ar[d]^t\ar[r]\ar[u]^s&
+\mathsf{Fun}([2],\mathcal{C})\ar[d]\ar[r]
+&\mathsf{Fun}([1],\mathcal{C})=\mathsf{Ar}(\mathcal{C})\ar[d]^t\ar[u]^s\\
+pt\ar[r]&\mathcal{C}_{/y}\ar[d]\ar[r]
+&\mathsf{Fun}([1],\mathcal{C})\ar[r]^s \ar[d]&\mathcal{C}\\
+&pt\ar[r]&\mathcal{C}
+}
+
 $$
 
 This then leads to
@@ -2990,21 +3000,86 @@ of the mapping space $\mathsf{Ar}(x,y)$
 To do it we notice that by the fact that in a general situation
 $$
 \xymatrix{
-\bullet\ar@{-->}[d]&\mathcal{E}_b\ar[d]\ar[r]& \mathcal{F}_b\ar[d]\\
+\bullet\ar@{-->}[d]\ar[r]&\mathcal{E}_b\ar[d]\ar[rr]&& \mathcal{F}_b\ar[d]\\
 \bullet \ar[r]&\mathcal{E} \ar[rd] \ar[rr] && \mathcal{F} \ar[dl] \\
 && \mathcal{B}
 }
 $$
-we get that the dashed arrow is
-an equivalence (because the square is a pullback:
+the dashed arrow is
+an equivalence (because the square is a pullback
+by 2-for-3:
 $$
 \xymatrix{
 \mathcal{E}_\ell\ar[r]\ar[d]&\mathcal{F}_\ell\ar[d]\ar[r]&pt\ar[d]\\
 \mathcal{E}\ar[r]&\mathcal{F}\ar[r]&\mathcal{B}),
 }
 $$
-so it's enough to work at the level of fibres.
+so it's enough to find the fibre of the fibre map.
+
+Since we want to compute $\mathsf{Ar}(x,y)$,
+which is by definition the fibre of
+$\mathsf{Ar}(\mathcal{C})\times\mathsf{Ar}(\mathcal{C})
+\to \mathcal{C}\times\mathcal{C}$, a conservative map,
+which means that its fibres are groupoids,
+then the following diagram should be enough:
+$$
+\xymatrix{
+\bullet\ar@{-->}[d]\ar[r]
+&(\mathcal{C}(x,y)\times\mathcal{C}(y,y'))\times
+_{\mathbb{C}(x,y')}
+(\mathcal{C}(x,x'),\mathcal{C}(z,y'))
+\ar[d]\ar[rr]
+&& \mathcal{C}(x,y)\times \mathcal{C}(x',y')\ar[d]\\
+\bullet \ar[r]
+&\mathsf{Map}([1]\times[1],\mathcal{C})
+=\mathsf{Ar}(\mathsf{Ar}(\mathcal{C}))^\simeq
+\ar[rd] \ar[rr]
+&&\mathcal{C}[1]^{\times 2}\ar[dl] \\
+&& \mathcal{B}
+}
+$$
+We find that the fibre we are seeking is
+\begin{equation}
+\label{equation-fibre}
+\{f\}\times\mathcal{C}(y,y')
+\times_{\mathcal{C}(x,y')}
+(\mathcal{C}(x,x')\times \{g\}).
+\end{equation}
+
+\noindent
+The reason is given by the three diagrams
+$$
+\xymatrix{
+\mathcal{C}(x,y')\ar[r]
+&\mathcal{C}(x,y')\ar[r]
+&pt\\
+\{f\}\times\mathcal{C}(y,y')\ar[r]
+&\mathcal{C}(x,y)\times\mathcal{C}(y,y')\ar[r]
+&\mathcal{C}(x,y)\ni f\\
+\mathcal{C}(x,x')\times\{y\}\ar[r]
+&\mathcal{C}(x,x')\times\mathcal{C}(x',y')\ar[r]
+&\mathcal{C}(x',y')\ni g.
+}
+$$
 \end{proof}
+
+\noindent
+Next we observe that morphisms in $\mathsf{Ar}(\mathcal{C})$ 
+are given by commutative squares
+\begin{equation}
+\label{equation-morphisms-in-arrow}
+\xymatrix{
+y\ar[r]^{e}\ar[d]_{f}&y'\ar[d]^{g}\\
+x\ar[r]_{h}&x'
+}
+\end{equation}
+
+\noindent
+which in fact are elements of the fibre we found
+in the last proposition, namely Equation \ref{equation-fibre}.
+This just says that ``the mapping spaces in $\mathsf{Ar}(\mathcal{C})$ 
+are what we expected them to be''!
+(namely those commutative squares).
 
 \begin{exercise}
 \label{exercise-morphism-of-morphisms}
@@ -3035,16 +3110,33 @@ for $q:u \to v$.
 
 \begin{proof}
 By Proposition \ref{proposition-pullback-in-arrow-category}
-we know that the left and right faces are pullbacks.
-Then $\alpha^*$, $e^*$ and $h^*$ act as shown in the cube diagram.
-Thus I believe that it is only commutativity that we should prove…
+we know that the left and right faces are pullbacks
+(and in particular comute).
+The front and back squares are 
+commutative by associativity of composition
+(which in fact is not immediate to prove, but holds).
+The hardest part are the top and bottom faces.
+They commute by a careful application of 
+Exercise \ref{exercise-3.5}.
 \end{proof}
+
+\noindent
+The next proposition looks like a technical statement
+justifying Exercise \ref{exercise-morphism-of-morphisms},
+and to be used for proving the next lemma.
 
 \begin{proposition}
 \label{proposition-evaluation-and-arrow}
-This looks like a technical proposition
-justifying Exercise \ref{exercise-morphism-of-morphisms},
-and to be used for proving the next lemma.
+For any $\infty$-category $\mathcal{C}$,
+the functor
+$$
+\text{ev}_1:\mathsf{Ar}(\mathcal{C})\to\mathcal{C}
+$$
+is a cocartesian fibration.
+A morphism in $\mathsf{Ar}(\mathcal{C})$ 
+given by a square \ref{equation-morphisms-in-arrow}
+is $\text{ev}_1$ cocartesian if and only if $e$ 
+is an equivalence.
 \end{proposition}
 
 \begin{lemma}
