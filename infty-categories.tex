@@ -3225,6 +3225,39 @@ $$
 $$
 is called the {\it cocartesian transport functor}.
 
+\medskip\noindent
+The upshot about this part of the book
+is that we defined what the induced maps on mapping spaces
+associated to some straightening functor
+that we didn't define yet should be.
+
+More explicitly, we want to construct
+$$
+\text{CoCart}(\mathcal{B})
+\xrightarrow{\simeq}
+\mathsf{Fun}(\mathcal{B},\mathsf{Cat}_{\infty}),
+$$
+which means that after fixing a cocartestian fibration
+over $\mathcal{B}$, say
+$p:\mathcal{E} \to \mathcal{B}$,
+we need to construct a functor $\mathcal{B} \to \mathsf{Cat}_{\infty}$.
+For this we need to specify 
+the correspondence of morphisms in $\mathcal{B}$,
+namely
+\begin{align*}
+\mathcal{B}(b,b') &\longrightarrow 
+\mathsf{Map}(\mathcal{E}_{b'}, \mathcal{E}_b) \\
+f &\longmapsto f_!.
+\end{align*}
+
+\noindent
+This $f_!$ was constructed using the results of this chapter
+(and of the previous!).
+This is explained in \cite[Section 3.7]{Rune}.
+Notice that this is not detailed
+enough to be a proof of the equivalence
+of $\infty$-categories that we call {\it straightning}.
+
 \section{Representability and the Yoneda embedding}
 \label{section-representability}
 
